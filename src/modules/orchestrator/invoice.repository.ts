@@ -1,5 +1,5 @@
 import { Injectable } from '@nitrostack/core';
-import type { DatabaseService } from '../../shared/database.service.js';
+import { DatabaseService } from '../../shared/database.service.js';
 import type { ExtractedInvoice } from '../../shared/schemas.js';
 
 /**

@@ -2,7 +2,7 @@ import { Injectable, OnModuleInit } from '@nitrostack/core';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { DatabaseService } from '../../shared/database.service.js';
+import { DatabaseService } from '../../shared/database.service.js';
 import type { PurchaseOrder } from '../../shared/schemas.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

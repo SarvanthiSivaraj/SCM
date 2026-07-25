@@ -1,6 +1,6 @@
 import { Injectable } from '@nitrostack/core';
 import { createHash } from 'crypto';
-import type { DatabaseService } from './database.service.js';
+import { DatabaseService } from './database.service.js';
 
 /**
  * AuditLogService — append-only audit trail for every tool call.

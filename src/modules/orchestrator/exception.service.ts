@@ -1,6 +1,6 @@
 import { Injectable } from '@nitrostack/core';
 import { randomUUID } from 'crypto';
-import type { DatabaseService } from '../../shared/database.service.js';
+import { DatabaseService } from '../../shared/database.service.js';
 
 // ─── Row type ─────────────────────────────────────────────────────────────────
 

@@ -4,8 +4,8 @@ import {
   ExecutionContext,
   z,
 } from '@nitrostack/core';
-import type { AnalyticsService } from './analytics.service.js';
-import type { AuditLogService } from '../../shared/audit-log.service.js';
+import { AnalyticsService } from './analytics.service.js';
+import { AuditLogService } from '../../shared/audit-log.service.js';
 
 // ─── Shared filter schema ─────────────────────────────────────────────────────
 
