@@ -1,14 +1,19 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nitrostack/core';
 import { Database } from '@sqlitecloud/drivers';
+import { existsSync, readFileSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { PurchaseOrder } from '../../shared/schemas.js';
 
-// ─── Seed data — 10 POs, PO-004 is the intentional mismatch target ─────────────
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const MASTER_JSON_PATH = join(__dirname, '..', '..', '..', 'data', 'master-data.json');
 
-const SEED_POS: PurchaseOrder[] = [
+// ─── Seed data fallback ─────────────────────────────────────────────────────────
+
+const FALLBACK_SEED_POS: PurchaseOrder[] = [
   { poNumber: 'PO-001', vendor: 'Acme Corp',          sku: 'LAP-001', orderedQty: 10,  unitPrice: 999.00,  hsCode: '8471.30' },
   { poNumber: 'PO-002', vendor: 'Tech Supplies Ltd',  sku: 'BAT-002', orderedQty: 50,  unitPrice: 49.99,   hsCode: '8507.60' },
   { poNumber: 'PO-003', vendor: 'Global Parts Co',    sku: 'MON-003', orderedQty: 5,   unitPrice: 450.00,  hsCode: '8528.52' },
-  // Intentional mismatch: same SKU as PO-001 but unitPrice is $10 (not $999)
   { poNumber: 'PO-004', vendor: 'Acme Corp',          sku: 'LAP-001', orderedQty: 10,  unitPrice: 10.00,   hsCode: '8471.30' },
   { poNumber: 'PO-005', vendor: 'Office Depot',       sku: 'CHR-005', orderedQty: 20,  unitPrice: 199.99,  hsCode: '9401.30' },
   { poNumber: 'PO-006', vendor: 'FastShip Logistics', sku: 'CAB-006', orderedQty: 200, unitPrice: 2.50,    hsCode: '8544.42' },
@@ -17,6 +22,21 @@ const SEED_POS: PurchaseOrder[] = [
   { poNumber: 'PO-009', vendor: 'Acme Corp',          sku: 'MSE-009', orderedQty: 25,  unitPrice: 35.00,   hsCode: '8471.60' },
   { poNumber: 'PO-010', vendor: 'Office Depot',       sku: 'DSK-010', orderedQty: 8,   unitPrice: 299.99,  hsCode: '9403.10' },
 ];
+
+function getSeedPOs(): PurchaseOrder[] {
+  if (existsSync(MASTER_JSON_PATH)) {
+    try {
+      const content = readFileSync(MASTER_JSON_PATH, 'utf-8');
+      const parsed = JSON.parse(content);
+      if (Array.isArray(parsed.purchaseOrders) && parsed.purchaseOrders.length > 0) {
+        return parsed.purchaseOrders as PurchaseOrder[];
+      }
+    } catch (err) {
+      console.warn('[MasterDataService] Could not parse master-data.json, using fallback seed POs.');
+    }
+  }
+  return FALLBACK_SEED_POS;
+}
 
 // ─── DDL ──────────────────────────────────────────────────────────────────────
 
@@ -81,7 +101,8 @@ export class MasterDataService implements OnModuleInit, OnModuleDestroy {
   // ─── Seed ──────────────────────────────────────────────────────────────────
 
   private async seedDatabase(): Promise<void> {
-    for (const po of SEED_POS) {
+    const seedPOs = getSeedPOs();
+    for (const po of seedPOs) {
       await this.db.sql(
         `INSERT OR IGNORE INTO purchase_orders
            (po_number, vendor, sku, ordered_qty, unit_price, hs_code)
@@ -89,8 +110,9 @@ export class MasterDataService implements OnModuleInit, OnModuleDestroy {
         po.poNumber, po.vendor, po.sku, po.orderedQty, po.unitPrice, po.hsCode,
       );
     }
-    console.error(`[MasterDataService] Seeded ${SEED_POS.length} purchase orders ✓`);
+    console.error(`[MasterDataService] Seeded ${seedPOs.length} purchase orders ✓`);
   }
+
 
   // ─── Query API ─────────────────────────────────────────────────────────────
 

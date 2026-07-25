@@ -5,7 +5,7 @@
       "vendor": "Acme Corp",
       "sku": "LAP-001",
       "orderedQty": 10,
-      "unitPrice": 999,
+      "unitPrice": 999.0,
       "hsCode": "8471.30"
     },
     {
@@ -21,7 +21,7 @@
       "vendor": "Global Parts Co",
       "sku": "MON-003",
       "orderedQty": 5,
-      "unitPrice": 450,
+      "unitPrice": 450.0,
       "hsCode": "8528.52"
     },
     {
@@ -29,7 +29,7 @@
       "vendor": "Acme Corp",
       "sku": "LAP-001",
       "orderedQty": 10,
-      "unitPrice": 10,
+      "unitPrice": 10.0,
       "hsCode": "8471.30"
     },
     {
@@ -39,6 +39,3966 @@
       "orderedQty": 20,
       "unitPrice": 199.99,
       "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-006",
+      "vendor": "FastShip Logistics",
+      "sku": "CAB-006",
+      "orderedQty": 200,
+      "unitPrice": 2.5,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-007",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "SSD-007",
+      "orderedQty": 30,
+      "unitPrice": 89.99,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-008",
+      "vendor": "Global Parts Co",
+      "sku": "KBD-008",
+      "orderedQty": 15,
+      "unitPrice": 75.0,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-009",
+      "vendor": "Acme Corp",
+      "sku": "MSE-009",
+      "orderedQty": 25,
+      "unitPrice": 35.0,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-010",
+      "vendor": "Office Depot",
+      "sku": "DSK-010",
+      "orderedQty": 8,
+      "unitPrice": 299.99,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-011",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "RTR-214",
+      "orderedQty": 5,
+      "unitPrice": 493.64,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-012",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "CHR-242",
+      "orderedQty": 200,
+      "unitPrice": 131.02,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-013",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "DSP-658",
+      "orderedQty": 10,
+      "unitPrice": 967.64,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-014",
+      "vendor": "Williams and Sons",
+      "sku": "LAP-195",
+      "orderedQty": 15,
+      "unitPrice": 964.32,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-015",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "LAP-674",
+      "orderedQty": 15,
+      "unitPrice": 1931.04,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-016",
+      "vendor": "Davis and Sons",
+      "sku": "DSK-529",
+      "orderedQty": 15,
+      "unitPrice": 419.53,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-017",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "PRN-990",
+      "orderedQty": 5,
+      "unitPrice": 934.45,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-018",
+      "vendor": "Doyle Ltd",
+      "sku": "RAM-532",
+      "orderedQty": 25,
+      "unitPrice": 95.86,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-019",
+      "vendor": "Office Depot",
+      "sku": "PRN-444",
+      "orderedQty": 10,
+      "unitPrice": 201.11,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-020",
+      "vendor": "Gray-Mayo",
+      "sku": "SSD-967",
+      "orderedQty": 25,
+      "unitPrice": 225.17,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-021",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "LAP-847",
+      "orderedQty": 50,
+      "unitPrice": 1571.46,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-022",
+      "vendor": "Galloway-Wyatt",
+      "sku": "KBD-180",
+      "orderedQty": 75,
+      "unitPrice": 66.91,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-023",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "SVR-982",
+      "orderedQty": 25,
+      "unitPrice": 5414.67,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-024",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "BAT-146",
+      "orderedQty": 150,
+      "unitPrice": 45.77,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-025",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "BAT-975",
+      "orderedQty": 15,
+      "unitPrice": 131.98,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-026",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "CAB-564",
+      "orderedQty": 150,
+      "unitPrice": 37.78,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-027",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "SSD-463",
+      "orderedQty": 15,
+      "unitPrice": 246.11,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-028",
+      "vendor": "Galloway-Wyatt",
+      "sku": "DSP-799",
+      "orderedQty": 150,
+      "unitPrice": 292.82,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-029",
+      "vendor": "Abbott-Munoz",
+      "sku": "MON-646",
+      "orderedQty": 200,
+      "unitPrice": 310.71,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-030",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "KBD-376",
+      "orderedQty": 150,
+      "unitPrice": 130.11,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-031",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "RTR-432",
+      "orderedQty": 500,
+      "unitPrice": 509.83,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-032",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "CHR-941",
+      "orderedQty": 5,
+      "unitPrice": 419.07,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-033",
+      "vendor": "Mcclure, Ward and Lee",
+      "sku": "CAB-167",
+      "orderedQty": 15,
+      "unitPrice": 41.22,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-034",
+      "vendor": "Blair PLC",
+      "sku": "DSP-835",
+      "orderedQty": 25,
+      "unitPrice": 476.41,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-035",
+      "vendor": "FastShip Logistics",
+      "sku": "KBD-758",
+      "orderedQty": 50,
+      "unitPrice": 42.86,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-036",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "CHR-862",
+      "orderedQty": 75,
+      "unitPrice": 309.98,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-037",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "SVR-538",
+      "orderedQty": 100,
+      "unitPrice": 4115.62,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-038",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "MON-621",
+      "orderedQty": 50,
+      "unitPrice": 190.82,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-039",
+      "vendor": "Gray-Mayo",
+      "sku": "CAM-212",
+      "orderedQty": 12,
+      "unitPrice": 230.78,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-040",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "RTR-532",
+      "orderedQty": 100,
+      "unitPrice": 83.43,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-041",
+      "vendor": "Arnold Ltd",
+      "sku": "SVR-579",
+      "orderedQty": 75,
+      "unitPrice": 3035.32,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-042",
+      "vendor": "James Group",
+      "sku": "CAM-111",
+      "orderedQty": 150,
+      "unitPrice": 260.63,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-043",
+      "vendor": "Galloway-Wyatt",
+      "sku": "DSP-649",
+      "orderedQty": 250,
+      "unitPrice": 546.87,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-044",
+      "vendor": "Abbott-Munoz",
+      "sku": "SSD-214",
+      "orderedQty": 20,
+      "unitPrice": 171.95,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-045",
+      "vendor": "Dudley Group",
+      "sku": "LAP-839",
+      "orderedQty": 200,
+      "unitPrice": 1025.78,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-046",
+      "vendor": "Perez Inc",
+      "sku": "PRN-282",
+      "orderedQty": 75,
+      "unitPrice": 1103.8,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-047",
+      "vendor": "Williams and Sons",
+      "sku": "RTR-405",
+      "orderedQty": 500,
+      "unitPrice": 431.56,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-048",
+      "vendor": "Arnold Ltd",
+      "sku": "CHR-256",
+      "orderedQty": 25,
+      "unitPrice": 401.63,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-049",
+      "vendor": "Blair PLC",
+      "sku": "PRN-643",
+      "orderedQty": 5,
+      "unitPrice": 758.44,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-050",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "LAP-214",
+      "orderedQty": 25,
+      "unitPrice": 2256.44,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-051",
+      "vendor": "Morales-Jones",
+      "sku": "PRN-414",
+      "orderedQty": 15,
+      "unitPrice": 162.78,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-052",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "SVR-180",
+      "orderedQty": 10,
+      "unitPrice": 6542.93,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-053",
+      "vendor": "FastShip Logistics",
+      "sku": "BAT-878",
+      "orderedQty": 75,
+      "unitPrice": 118.39,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-054",
+      "vendor": "Dudley Group",
+      "sku": "RTR-586",
+      "orderedQty": 75,
+      "unitPrice": 144.9,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-055",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "CAM-721",
+      "orderedQty": 30,
+      "unitPrice": 338.6,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-056",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "DSK-873",
+      "orderedQty": 200,
+      "unitPrice": 563.92,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-057",
+      "vendor": "Abbott-Munoz",
+      "sku": "CAB-508",
+      "orderedQty": 150,
+      "unitPrice": 29.77,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-058",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "DSP-629",
+      "orderedQty": 50,
+      "unitPrice": 357.31,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-059",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "BAT-446",
+      "orderedQty": 5,
+      "unitPrice": 94.42,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-060",
+      "vendor": "Galloway-Wyatt",
+      "sku": "SVR-325",
+      "orderedQty": 5,
+      "unitPrice": 1718.25,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-061",
+      "vendor": "Perez Inc",
+      "sku": "LAP-334",
+      "orderedQty": 10,
+      "unitPrice": 2309.84,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-062",
+      "vendor": "James Group",
+      "sku": "SSD-172",
+      "orderedQty": 75,
+      "unitPrice": 109.97,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-063",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "MSE-319",
+      "orderedQty": 75,
+      "unitPrice": 21.25,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-064",
+      "vendor": "Gray-Mayo",
+      "sku": "DSP-684",
+      "orderedQty": 100,
+      "unitPrice": 814.47,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-065",
+      "vendor": "Office Depot",
+      "sku": "MSE-926",
+      "orderedQty": 30,
+      "unitPrice": 26.18,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-066",
+      "vendor": "Abbott-Munoz",
+      "sku": "RTR-541",
+      "orderedQty": 25,
+      "unitPrice": 301.27,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-067",
+      "vendor": "Galloway-Wyatt",
+      "sku": "CAM-846",
+      "orderedQty": 5,
+      "unitPrice": 245.48,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-068",
+      "vendor": "Gray-Mayo",
+      "sku": "BAT-162",
+      "orderedQty": 30,
+      "unitPrice": 113.31,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-069",
+      "vendor": "Arnold Ltd",
+      "sku": "CAM-211",
+      "orderedQty": 15,
+      "unitPrice": 91.31,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-070",
+      "vendor": "Abbott-Munoz",
+      "sku": "MSE-243",
+      "orderedQty": 30,
+      "unitPrice": 25.6,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-071",
+      "vendor": "Perez Inc",
+      "sku": "CHR-995",
+      "orderedQty": 10,
+      "unitPrice": 270.68,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-072",
+      "vendor": "Arnold Ltd",
+      "sku": "CAM-663",
+      "orderedQty": 10,
+      "unitPrice": 46.19,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-073",
+      "vendor": "Perez Inc",
+      "sku": "CAM-115",
+      "orderedQty": 10,
+      "unitPrice": 326.44,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-074",
+      "vendor": "Doyle Ltd",
+      "sku": "CHR-270",
+      "orderedQty": 30,
+      "unitPrice": 288.11,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-075",
+      "vendor": "Acme Corp",
+      "sku": "CAM-510",
+      "orderedQty": 5,
+      "unitPrice": 82.68,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-076",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "KBD-371",
+      "orderedQty": 250,
+      "unitPrice": 145.62,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-077",
+      "vendor": "Arnold Ltd",
+      "sku": "KBD-813",
+      "orderedQty": 200,
+      "unitPrice": 179.27,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-078",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "RTR-835",
+      "orderedQty": 50,
+      "unitPrice": 138.65,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-079",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "CHR-159",
+      "orderedQty": 100,
+      "unitPrice": 390.65,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-080",
+      "vendor": "Blair PLC",
+      "sku": "RAM-421",
+      "orderedQty": 5,
+      "unitPrice": 37.79,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-081",
+      "vendor": "Dudley Group",
+      "sku": "DSK-973",
+      "orderedQty": 75,
+      "unitPrice": 244.46,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-082",
+      "vendor": "Global Parts Co",
+      "sku": "BAT-971",
+      "orderedQty": 12,
+      "unitPrice": 24.25,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-083",
+      "vendor": "Morales-Jones",
+      "sku": "RTR-982",
+      "orderedQty": 15,
+      "unitPrice": 289.28,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-084",
+      "vendor": "Williams and Sons",
+      "sku": "SVR-352",
+      "orderedQty": 100,
+      "unitPrice": 5539.99,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-085",
+      "vendor": "Dudley Group",
+      "sku": "BAT-529",
+      "orderedQty": 150,
+      "unitPrice": 93.8,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-086",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "SSD-367",
+      "orderedQty": 15,
+      "unitPrice": 245.96,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-087",
+      "vendor": "Galloway-Wyatt",
+      "sku": "CHR-371",
+      "orderedQty": 30,
+      "unitPrice": 142.66,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-088",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "CAB-568",
+      "orderedQty": 25,
+      "unitPrice": 41.91,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-089",
+      "vendor": "Mcclure, Ward and Lee",
+      "sku": "BAT-109",
+      "orderedQty": 50,
+      "unitPrice": 98.86,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-090",
+      "vendor": "Davis and Sons",
+      "sku": "BAT-175",
+      "orderedQty": 75,
+      "unitPrice": 43.78,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-091",
+      "vendor": "Blake and Sons",
+      "sku": "MON-457",
+      "orderedQty": 10,
+      "unitPrice": 804.95,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-092",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "CAB-261",
+      "orderedQty": 50,
+      "unitPrice": 37.77,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-093",
+      "vendor": "Acme Corp",
+      "sku": "CAB-726",
+      "orderedQty": 250,
+      "unitPrice": 29.95,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-094",
+      "vendor": "James Group",
+      "sku": "RTR-936",
+      "orderedQty": 75,
+      "unitPrice": 226.12,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-095",
+      "vendor": "Morales-Jones",
+      "sku": "BAT-999",
+      "orderedQty": 12,
+      "unitPrice": 50.7,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-096",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "BAT-860",
+      "orderedQty": 75,
+      "unitPrice": 35.99,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-097",
+      "vendor": "James Group",
+      "sku": "SVR-315",
+      "orderedQty": 200,
+      "unitPrice": 3703.03,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-098",
+      "vendor": "Davis and Sons",
+      "sku": "RTR-973",
+      "orderedQty": 20,
+      "unitPrice": 350.77,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-099",
+      "vendor": "Garcia-James",
+      "sku": "DSP-966",
+      "orderedQty": 5,
+      "unitPrice": 319.99,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-100",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "CAM-383",
+      "orderedQty": 5,
+      "unitPrice": 31.13,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-101",
+      "vendor": "Abbott-Munoz",
+      "sku": "MON-752",
+      "orderedQty": 20,
+      "unitPrice": 245.87,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-102",
+      "vendor": "Office Depot",
+      "sku": "DSK-822",
+      "orderedQty": 30,
+      "unitPrice": 486.54,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-103",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "BAT-807",
+      "orderedQty": 12,
+      "unitPrice": 88.65,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-104",
+      "vendor": "FastShip Logistics",
+      "sku": "SSD-696",
+      "orderedQty": 75,
+      "unitPrice": 81.65,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-105",
+      "vendor": "Gray-Mayo",
+      "sku": "LAP-415",
+      "orderedQty": 25,
+      "unitPrice": 2296.96,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-106",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "CAM-140",
+      "orderedQty": 25,
+      "unitPrice": 97.22,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-107",
+      "vendor": "Morales-Jones",
+      "sku": "RTR-205",
+      "orderedQty": 25,
+      "unitPrice": 516.97,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-108",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "CAM-516",
+      "orderedQty": 100,
+      "unitPrice": 269.83,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-109",
+      "vendor": "Gray-Mayo",
+      "sku": "DSP-342",
+      "orderedQty": 500,
+      "unitPrice": 411.25,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-110",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "PRN-281",
+      "orderedQty": 30,
+      "unitPrice": 126.29,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-111",
+      "vendor": "Gray-Mayo",
+      "sku": "DSP-440",
+      "orderedQty": 250,
+      "unitPrice": 1410.06,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-112",
+      "vendor": "Davis and Sons",
+      "sku": "RTR-984",
+      "orderedQty": 200,
+      "unitPrice": 535.5,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-113",
+      "vendor": "Perez Inc",
+      "sku": "MON-906",
+      "orderedQty": 200,
+      "unitPrice": 204.21,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-114",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "LAP-979",
+      "orderedQty": 50,
+      "unitPrice": 943.87,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-115",
+      "vendor": "Gray-Mayo",
+      "sku": "DSP-571",
+      "orderedQty": 25,
+      "unitPrice": 596.75,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-116",
+      "vendor": "Doyle Ltd",
+      "sku": "CAM-333",
+      "orderedQty": 15,
+      "unitPrice": 37.57,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-117",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "KBD-436",
+      "orderedQty": 20,
+      "unitPrice": 158.3,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-118",
+      "vendor": "James Group",
+      "sku": "CAB-459",
+      "orderedQty": 150,
+      "unitPrice": 23.66,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-119",
+      "vendor": "Office Depot",
+      "sku": "CAM-649",
+      "orderedQty": 25,
+      "unitPrice": 330.56,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-120",
+      "vendor": "Davis and Sons",
+      "sku": "DSP-367",
+      "orderedQty": 12,
+      "unitPrice": 954.77,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-121",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "LAP-211",
+      "orderedQty": 100,
+      "unitPrice": 1368.13,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-122",
+      "vendor": "Dudley Group",
+      "sku": "PRN-421",
+      "orderedQty": 30,
+      "unitPrice": 766.44,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-123",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "BAT-494",
+      "orderedQty": 100,
+      "unitPrice": 40.66,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-124",
+      "vendor": "Gray-Mayo",
+      "sku": "RAM-546",
+      "orderedQty": 5,
+      "unitPrice": 157.58,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-125",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "DSK-803",
+      "orderedQty": 200,
+      "unitPrice": 714.16,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-126",
+      "vendor": "James Group",
+      "sku": "RTR-301",
+      "orderedQty": 25,
+      "unitPrice": 305.93,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-127",
+      "vendor": "Perez Inc",
+      "sku": "DSP-438",
+      "orderedQty": 100,
+      "unitPrice": 608.09,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-128",
+      "vendor": "James Group",
+      "sku": "BAT-837",
+      "orderedQty": 20,
+      "unitPrice": 83.46,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-129",
+      "vendor": "Arnold Ltd",
+      "sku": "KBD-434",
+      "orderedQty": 30,
+      "unitPrice": 131.55,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-130",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "MON-296",
+      "orderedQty": 30,
+      "unitPrice": 637.98,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-131",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "RTR-866",
+      "orderedQty": 12,
+      "unitPrice": 417.39,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-132",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "KBD-661",
+      "orderedQty": 500,
+      "unitPrice": 20.06,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-133",
+      "vendor": "Galloway-Wyatt",
+      "sku": "CHR-540",
+      "orderedQty": 250,
+      "unitPrice": 326.79,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-134",
+      "vendor": "Doyle Ltd",
+      "sku": "SSD-576",
+      "orderedQty": 50,
+      "unitPrice": 174.28,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-135",
+      "vendor": "Gray-Mayo",
+      "sku": "DSK-584",
+      "orderedQty": 250,
+      "unitPrice": 690.71,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-136",
+      "vendor": "Dudley Group",
+      "sku": "RAM-273",
+      "orderedQty": 150,
+      "unitPrice": 46.62,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-137",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "RTR-748",
+      "orderedQty": 100,
+      "unitPrice": 247.79,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-138",
+      "vendor": "Gray-Mayo",
+      "sku": "PRN-340",
+      "orderedQty": 150,
+      "unitPrice": 440.77,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-139",
+      "vendor": "Blair PLC",
+      "sku": "CHR-250",
+      "orderedQty": 5,
+      "unitPrice": 107.95,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-140",
+      "vendor": "Garcia-James",
+      "sku": "SVR-970",
+      "orderedQty": 250,
+      "unitPrice": 1731.65,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-141",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "DSP-744",
+      "orderedQty": 100,
+      "unitPrice": 452.77,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-142",
+      "vendor": "Galloway-Wyatt",
+      "sku": "KBD-606",
+      "orderedQty": 30,
+      "unitPrice": 59.04,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-143",
+      "vendor": "Morales-Jones",
+      "sku": "RAM-105",
+      "orderedQty": 250,
+      "unitPrice": 244.41,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-144",
+      "vendor": "Gray-Mayo",
+      "sku": "BAT-897",
+      "orderedQty": 30,
+      "unitPrice": 44.54,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-145",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "RAM-630",
+      "orderedQty": 50,
+      "unitPrice": 37.81,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-146",
+      "vendor": "Gray-Mayo",
+      "sku": "DSP-968",
+      "orderedQty": 10,
+      "unitPrice": 793.4,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-147",
+      "vendor": "Williams and Sons",
+      "sku": "MSE-783",
+      "orderedQty": 75,
+      "unitPrice": 93.97,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-148",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "SSD-873",
+      "orderedQty": 50,
+      "unitPrice": 227.99,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-149",
+      "vendor": "Arnold Ltd",
+      "sku": "DSP-616",
+      "orderedQty": 30,
+      "unitPrice": 1279.74,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-150",
+      "vendor": "Abbott-Munoz",
+      "sku": "MSE-262",
+      "orderedQty": 200,
+      "unitPrice": 83.23,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-151",
+      "vendor": "Davis and Sons",
+      "sku": "CAB-869",
+      "orderedQty": 15,
+      "unitPrice": 38.03,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-152",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "PRN-896",
+      "orderedQty": 75,
+      "unitPrice": 632.54,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-153",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "CAB-550",
+      "orderedQty": 10,
+      "unitPrice": 32.54,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-154",
+      "vendor": "Global Parts Co",
+      "sku": "CAB-443",
+      "orderedQty": 25,
+      "unitPrice": 40.35,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-155",
+      "vendor": "FastShip Logistics",
+      "sku": "MON-254",
+      "orderedQty": 15,
+      "unitPrice": 418.38,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-156",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "RAM-319",
+      "orderedQty": 10,
+      "unitPrice": 130.79,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-157",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "DSK-577",
+      "orderedQty": 30,
+      "unitPrice": 187.36,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-158",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "KBD-498",
+      "orderedQty": 250,
+      "unitPrice": 113.45,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-159",
+      "vendor": "Blair PLC",
+      "sku": "LAP-977",
+      "orderedQty": 250,
+      "unitPrice": 1650.38,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-160",
+      "vendor": "Perez Inc",
+      "sku": "LAP-460",
+      "orderedQty": 20,
+      "unitPrice": 2005.95,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-161",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "DSP-955",
+      "orderedQty": 30,
+      "unitPrice": 899.69,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-162",
+      "vendor": "Blair PLC",
+      "sku": "DSK-919",
+      "orderedQty": 100,
+      "unitPrice": 688.69,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-163",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "CHR-379",
+      "orderedQty": 30,
+      "unitPrice": 288.11,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-164",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "SSD-784",
+      "orderedQty": 150,
+      "unitPrice": 286.41,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-165",
+      "vendor": "Williams and Sons",
+      "sku": "MON-960",
+      "orderedQty": 50,
+      "unitPrice": 836.32,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-166",
+      "vendor": "James Group",
+      "sku": "DSK-127",
+      "orderedQty": 30,
+      "unitPrice": 505.14,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-167",
+      "vendor": "Perez Inc",
+      "sku": "LAP-185",
+      "orderedQty": 150,
+      "unitPrice": 1356.23,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-168",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "MSE-286",
+      "orderedQty": 5,
+      "unitPrice": 32.11,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-169",
+      "vendor": "Morales-Jones",
+      "sku": "CHR-565",
+      "orderedQty": 25,
+      "unitPrice": 227.38,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-170",
+      "vendor": "Garcia-James",
+      "sku": "KBD-384",
+      "orderedQty": 250,
+      "unitPrice": 172.19,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-171",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "CAB-954",
+      "orderedQty": 10,
+      "unitPrice": 21.96,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-172",
+      "vendor": "Global Parts Co",
+      "sku": "DSK-153",
+      "orderedQty": 25,
+      "unitPrice": 284.53,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-173",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "PRN-767",
+      "orderedQty": 5,
+      "unitPrice": 929.41,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-174",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "CHR-959",
+      "orderedQty": 5,
+      "unitPrice": 343.75,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-175",
+      "vendor": "Doyle Ltd",
+      "sku": "MON-584",
+      "orderedQty": 150,
+      "unitPrice": 209.11,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-176",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "MSE-816",
+      "orderedQty": 20,
+      "unitPrice": 75.19,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-177",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "SVR-721",
+      "orderedQty": 200,
+      "unitPrice": 6444.01,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-178",
+      "vendor": "Acme Corp",
+      "sku": "CAM-267",
+      "orderedQty": 20,
+      "unitPrice": 64.59,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-179",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "DSP-419",
+      "orderedQty": 100,
+      "unitPrice": 1080.55,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-180",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "KBD-832",
+      "orderedQty": 15,
+      "unitPrice": 32.16,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-181",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "CAM-742",
+      "orderedQty": 15,
+      "unitPrice": 62.61,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-182",
+      "vendor": "Office Depot",
+      "sku": "CAB-970",
+      "orderedQty": 150,
+      "unitPrice": 27.62,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-183",
+      "vendor": "Arnold Ltd",
+      "sku": "PRN-679",
+      "orderedQty": 250,
+      "unitPrice": 144.22,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-184",
+      "vendor": "Galloway-Wyatt",
+      "sku": "KBD-777",
+      "orderedQty": 25,
+      "unitPrice": 31.03,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-185",
+      "vendor": "Blair PLC",
+      "sku": "SSD-112",
+      "orderedQty": 500,
+      "unitPrice": 167.32,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-186",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "BAT-543",
+      "orderedQty": 25,
+      "unitPrice": 100.8,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-187",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "MSE-824",
+      "orderedQty": 12,
+      "unitPrice": 47.02,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-188",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "DSK-766",
+      "orderedQty": 20,
+      "unitPrice": 519.55,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-189",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "DSK-893",
+      "orderedQty": 50,
+      "unitPrice": 428.92,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-190",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "RAM-706",
+      "orderedQty": 20,
+      "unitPrice": 107.19,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-191",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "CAM-188",
+      "orderedQty": 20,
+      "unitPrice": 312.12,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-192",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "PRN-575",
+      "orderedQty": 100,
+      "unitPrice": 770.98,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-193",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "SSD-129",
+      "orderedQty": 50,
+      "unitPrice": 303.05,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-194",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "MSE-317",
+      "orderedQty": 25,
+      "unitPrice": 77.82,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-195",
+      "vendor": "Arnold Ltd",
+      "sku": "CAB-710",
+      "orderedQty": 200,
+      "unitPrice": 39.78,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-196",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "LAP-629",
+      "orderedQty": 15,
+      "unitPrice": 670.23,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-197",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "KBD-600",
+      "orderedQty": 75,
+      "unitPrice": 141.31,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-198",
+      "vendor": "Gray-Mayo",
+      "sku": "MSE-761",
+      "orderedQty": 200,
+      "unitPrice": 51.72,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-199",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "LAP-195",
+      "orderedQty": 20,
+      "unitPrice": 942.19,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-200",
+      "vendor": "Blair PLC",
+      "sku": "CHR-413",
+      "orderedQty": 150,
+      "unitPrice": 327.44,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-201",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "DSK-643",
+      "orderedQty": 25,
+      "unitPrice": 405.3,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-202",
+      "vendor": "Davis and Sons",
+      "sku": "DSK-438",
+      "orderedQty": 25,
+      "unitPrice": 571.71,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-203",
+      "vendor": "Doyle Ltd",
+      "sku": "CAB-357",
+      "orderedQty": 15,
+      "unitPrice": 6.75,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-204",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "SSD-222",
+      "orderedQty": 200,
+      "unitPrice": 203.8,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-205",
+      "vendor": "Blair PLC",
+      "sku": "RAM-289",
+      "orderedQty": 15,
+      "unitPrice": 80.18,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-206",
+      "vendor": "Dudley Group",
+      "sku": "CAB-841",
+      "orderedQty": 100,
+      "unitPrice": 43.98,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-207",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "SVR-389",
+      "orderedQty": 10,
+      "unitPrice": 7278.19,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-208",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "CHR-469",
+      "orderedQty": 12,
+      "unitPrice": 212.93,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-209",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "DSK-229",
+      "orderedQty": 20,
+      "unitPrice": 177.31,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-210",
+      "vendor": "Galloway-Wyatt",
+      "sku": "DSK-399",
+      "orderedQty": 200,
+      "unitPrice": 716.45,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-211",
+      "vendor": "Acme Corp",
+      "sku": "CAM-870",
+      "orderedQty": 50,
+      "unitPrice": 62.83,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-212",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "SVR-391",
+      "orderedQty": 50,
+      "unitPrice": 4694.61,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-213",
+      "vendor": "Blair PLC",
+      "sku": "MON-152",
+      "orderedQty": 20,
+      "unitPrice": 853.09,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-214",
+      "vendor": "Global Parts Co",
+      "sku": "BAT-941",
+      "orderedQty": 10,
+      "unitPrice": 69.1,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-215",
+      "vendor": "FastShip Logistics",
+      "sku": "SVR-744",
+      "orderedQty": 150,
+      "unitPrice": 1591.35,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-216",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "PRN-676",
+      "orderedQty": 20,
+      "unitPrice": 192.78,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-217",
+      "vendor": "Williams and Sons",
+      "sku": "BAT-671",
+      "orderedQty": 250,
+      "unitPrice": 71.18,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-218",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "PRN-733",
+      "orderedQty": 15,
+      "unitPrice": 953.04,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-219",
+      "vendor": "Garcia-James",
+      "sku": "MSE-553",
+      "orderedQty": 20,
+      "unitPrice": 83.11,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-220",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "CAB-682",
+      "orderedQty": 100,
+      "unitPrice": 4.12,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-221",
+      "vendor": "Davis and Sons",
+      "sku": "BAT-881",
+      "orderedQty": 15,
+      "unitPrice": 99.44,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-222",
+      "vendor": "Arnold Ltd",
+      "sku": "RTR-183",
+      "orderedQty": 12,
+      "unitPrice": 190.12,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-223",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "BAT-260",
+      "orderedQty": 5,
+      "unitPrice": 70.15,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-224",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "SVR-581",
+      "orderedQty": 20,
+      "unitPrice": 1438.27,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-225",
+      "vendor": "Global Parts Co",
+      "sku": "RAM-389",
+      "orderedQty": 200,
+      "unitPrice": 244.2,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-226",
+      "vendor": "Galloway-Wyatt",
+      "sku": "RTR-339",
+      "orderedQty": 20,
+      "unitPrice": 521.64,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-227",
+      "vendor": "Garcia-James",
+      "sku": "SVR-777",
+      "orderedQty": 250,
+      "unitPrice": 8015.78,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-228",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "BAT-657",
+      "orderedQty": 15,
+      "unitPrice": 102.43,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-229",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "CAB-946",
+      "orderedQty": 12,
+      "unitPrice": 4.61,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-230",
+      "vendor": "Mcclure, Ward and Lee",
+      "sku": "PRN-414",
+      "orderedQty": 100,
+      "unitPrice": 923.6,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-231",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "DSP-395",
+      "orderedQty": 50,
+      "unitPrice": 361.66,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-232",
+      "vendor": "Dudley Group",
+      "sku": "CAB-816",
+      "orderedQty": 30,
+      "unitPrice": 42.51,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-233",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "DSK-605",
+      "orderedQty": 50,
+      "unitPrice": 198.27,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-234",
+      "vendor": "Davis and Sons",
+      "sku": "DSP-542",
+      "orderedQty": 200,
+      "unitPrice": 619.02,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-235",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "LAP-193",
+      "orderedQty": 15,
+      "unitPrice": 2422.82,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-236",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "CAM-689",
+      "orderedQty": 100,
+      "unitPrice": 334.25,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-237",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "RTR-941",
+      "orderedQty": 20,
+      "unitPrice": 393.63,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-238",
+      "vendor": "Abbott-Munoz",
+      "sku": "PRN-279",
+      "orderedQty": 50,
+      "unitPrice": 670.38,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-239",
+      "vendor": "Garcia-James",
+      "sku": "DSP-384",
+      "orderedQty": 12,
+      "unitPrice": 1496.03,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-240",
+      "vendor": "Blair PLC",
+      "sku": "RTR-933",
+      "orderedQty": 50,
+      "unitPrice": 631.28,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-241",
+      "vendor": "Office Depot",
+      "sku": "SSD-518",
+      "orderedQty": 25,
+      "unitPrice": 136.13,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-242",
+      "vendor": "Blair PLC",
+      "sku": "CAM-264",
+      "orderedQty": 25,
+      "unitPrice": 161.73,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-243",
+      "vendor": "Arnold Ltd",
+      "sku": "CAB-778",
+      "orderedQty": 30,
+      "unitPrice": 36.89,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-244",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "LAP-565",
+      "orderedQty": 10,
+      "unitPrice": 1128.03,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-245",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "BAT-891",
+      "orderedQty": 30,
+      "unitPrice": 131.76,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-246",
+      "vendor": "Garcia-James",
+      "sku": "LAP-773",
+      "orderedQty": 500,
+      "unitPrice": 1584.19,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-247",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "LAP-292",
+      "orderedQty": 75,
+      "unitPrice": 1222.56,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-248",
+      "vendor": "Doyle Ltd",
+      "sku": "MSE-740",
+      "orderedQty": 50,
+      "unitPrice": 74.6,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-249",
+      "vendor": "Abbott-Munoz",
+      "sku": "CAB-662",
+      "orderedQty": 12,
+      "unitPrice": 41.85,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-250",
+      "vendor": "Galloway-Wyatt",
+      "sku": "DSP-815",
+      "orderedQty": 50,
+      "unitPrice": 357.85,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-251",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "SVR-918",
+      "orderedQty": 15,
+      "unitPrice": 6381.41,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-252",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "DSK-114",
+      "orderedQty": 75,
+      "unitPrice": 394.79,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-253",
+      "vendor": "Galloway-Wyatt",
+      "sku": "CAM-216",
+      "orderedQty": 50,
+      "unitPrice": 333.06,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-254",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "CAM-257",
+      "orderedQty": 50,
+      "unitPrice": 328.45,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-255",
+      "vendor": "Blair PLC",
+      "sku": "DSK-822",
+      "orderedQty": 20,
+      "unitPrice": 399.29,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-256",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "MSE-349",
+      "orderedQty": 50,
+      "unitPrice": 56.86,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-257",
+      "vendor": "FastShip Logistics",
+      "sku": "CHR-713",
+      "orderedQty": 75,
+      "unitPrice": 394.98,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-258",
+      "vendor": "Perez Inc",
+      "sku": "CAM-171",
+      "orderedQty": 20,
+      "unitPrice": 277.26,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-259",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "KBD-448",
+      "orderedQty": 250,
+      "unitPrice": 101.24,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-260",
+      "vendor": "Mcclure, Ward and Lee",
+      "sku": "LAP-389",
+      "orderedQty": 200,
+      "unitPrice": 1096.11,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-261",
+      "vendor": "Abbott-Munoz",
+      "sku": "SVR-775",
+      "orderedQty": 50,
+      "unitPrice": 7516.4,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-262",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "DSK-595",
+      "orderedQty": 25,
+      "unitPrice": 349.46,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-263",
+      "vendor": "Perez Inc",
+      "sku": "DSK-486",
+      "orderedQty": 50,
+      "unitPrice": 709.71,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-264",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "CHR-814",
+      "orderedQty": 15,
+      "unitPrice": 323.44,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-265",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "CAM-894",
+      "orderedQty": 30,
+      "unitPrice": 43.97,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-266",
+      "vendor": "James Group",
+      "sku": "MSE-822",
+      "orderedQty": 250,
+      "unitPrice": 42.4,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-267",
+      "vendor": "Blair PLC",
+      "sku": "PRN-940",
+      "orderedQty": 150,
+      "unitPrice": 1178.88,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-268",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "LAP-229",
+      "orderedQty": 75,
+      "unitPrice": 2429.71,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-269",
+      "vendor": "Office Depot",
+      "sku": "CAM-202",
+      "orderedQty": 500,
+      "unitPrice": 300.41,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-270",
+      "vendor": "Garcia-James",
+      "sku": "DSK-567",
+      "orderedQty": 5,
+      "unitPrice": 583.47,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-271",
+      "vendor": "Gray-Mayo",
+      "sku": "CAM-770",
+      "orderedQty": 12,
+      "unitPrice": 53.95,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-272",
+      "vendor": "Galloway-Wyatt",
+      "sku": "CAB-446",
+      "orderedQty": 100,
+      "unitPrice": 31.63,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-273",
+      "vendor": "Perez Inc",
+      "sku": "BAT-972",
+      "orderedQty": 25,
+      "unitPrice": 130.07,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-274",
+      "vendor": "Morales-Jones",
+      "sku": "DSK-489",
+      "orderedQty": 25,
+      "unitPrice": 526.08,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-275",
+      "vendor": "Williams and Sons",
+      "sku": "PRN-599",
+      "orderedQty": 500,
+      "unitPrice": 694.66,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-276",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "BAT-340",
+      "orderedQty": 150,
+      "unitPrice": 107.39,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-277",
+      "vendor": "Office Depot",
+      "sku": "CHR-864",
+      "orderedQty": 10,
+      "unitPrice": 266.93,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-278",
+      "vendor": "Abbott-Munoz",
+      "sku": "PRN-748",
+      "orderedQty": 200,
+      "unitPrice": 1059.71,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-279",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "MON-810",
+      "orderedQty": 20,
+      "unitPrice": 823.77,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-280",
+      "vendor": "Blake and Sons",
+      "sku": "SSD-915",
+      "orderedQty": 5,
+      "unitPrice": 127.41,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-281",
+      "vendor": "Mcclure, Ward and Lee",
+      "sku": "KBD-249",
+      "orderedQty": 15,
+      "unitPrice": 104.99,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-282",
+      "vendor": "Global Parts Co",
+      "sku": "RTR-911",
+      "orderedQty": 12,
+      "unitPrice": 147.84,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-283",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "SVR-991",
+      "orderedQty": 30,
+      "unitPrice": 5723.89,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-284",
+      "vendor": "Galloway-Wyatt",
+      "sku": "MSE-697",
+      "orderedQty": 12,
+      "unitPrice": 29.74,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-285",
+      "vendor": "Morales-Jones",
+      "sku": "CAB-570",
+      "orderedQty": 20,
+      "unitPrice": 30.51,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-286",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "PRN-576",
+      "orderedQty": 20,
+      "unitPrice": 845.05,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-287",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "BAT-552",
+      "orderedQty": 25,
+      "unitPrice": 148.33,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-288",
+      "vendor": "Perez Inc",
+      "sku": "RTR-534",
+      "orderedQty": 200,
+      "unitPrice": 196.31,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-289",
+      "vendor": "Office Depot",
+      "sku": "CAB-303",
+      "orderedQty": 30,
+      "unitPrice": 38.62,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-290",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "CHR-490",
+      "orderedQty": 100,
+      "unitPrice": 236.17,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-291",
+      "vendor": "James Group",
+      "sku": "RAM-402",
+      "orderedQty": 5,
+      "unitPrice": 274.38,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-292",
+      "vendor": "James Group",
+      "sku": "KBD-381",
+      "orderedQty": 5,
+      "unitPrice": 110.55,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-293",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "PRN-862",
+      "orderedQty": 5,
+      "unitPrice": 1101.59,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-294",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "MSE-952",
+      "orderedQty": 20,
+      "unitPrice": 75.94,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-295",
+      "vendor": "Doyle Ltd",
+      "sku": "SVR-921",
+      "orderedQty": 25,
+      "unitPrice": 2798.73,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-296",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "SVR-356",
+      "orderedQty": 150,
+      "unitPrice": 6715.71,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-297",
+      "vendor": "Office Depot",
+      "sku": "RTR-797",
+      "orderedQty": 500,
+      "unitPrice": 127.75,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-298",
+      "vendor": "Gray-Mayo",
+      "sku": "DSP-742",
+      "orderedQty": 150,
+      "unitPrice": 251.25,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-299",
+      "vendor": "FastShip Logistics",
+      "sku": "MSE-134",
+      "orderedQty": 100,
+      "unitPrice": 41.01,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-300",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "BAT-402",
+      "orderedQty": 25,
+      "unitPrice": 115.91,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-301",
+      "vendor": "Blake and Sons",
+      "sku": "CHR-235",
+      "orderedQty": 250,
+      "unitPrice": 310.16,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-302",
+      "vendor": "Davis and Sons",
+      "sku": "DSK-613",
+      "orderedQty": 20,
+      "unitPrice": 648.28,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-303",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "DSP-944",
+      "orderedQty": 50,
+      "unitPrice": 1457.6,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-304",
+      "vendor": "Abbott-Munoz",
+      "sku": "RAM-991",
+      "orderedQty": 25,
+      "unitPrice": 230.08,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-305",
+      "vendor": "Perez Inc",
+      "sku": "BAT-244",
+      "orderedQty": 250,
+      "unitPrice": 145.48,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-306",
+      "vendor": "Perez Inc",
+      "sku": "RTR-841",
+      "orderedQty": 150,
+      "unitPrice": 637.87,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-307",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "PRN-670",
+      "orderedQty": 25,
+      "unitPrice": 198.42,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-308",
+      "vendor": "Blake and Sons",
+      "sku": "LAP-370",
+      "orderedQty": 75,
+      "unitPrice": 746.18,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-309",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "RTR-866",
+      "orderedQty": 150,
+      "unitPrice": 203.61,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-310",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "CAM-753",
+      "orderedQty": 25,
+      "unitPrice": 64.67,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-311",
+      "vendor": "Arnold Ltd",
+      "sku": "MSE-125",
+      "orderedQty": 100,
+      "unitPrice": 85.16,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-312",
+      "vendor": "Galloway-Wyatt",
+      "sku": "SSD-724",
+      "orderedQty": 15,
+      "unitPrice": 239.01,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-313",
+      "vendor": "Garcia-James",
+      "sku": "CAM-575",
+      "orderedQty": 200,
+      "unitPrice": 126.7,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-314",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "BAT-243",
+      "orderedQty": 5,
+      "unitPrice": 142.75,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-315",
+      "vendor": "Arnold Ltd",
+      "sku": "MSE-218",
+      "orderedQty": 10,
+      "unitPrice": 29.96,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-316",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "MON-497",
+      "orderedQty": 50,
+      "unitPrice": 409.02,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-317",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "RAM-653",
+      "orderedQty": 30,
+      "unitPrice": 174.77,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-318",
+      "vendor": "Blair PLC",
+      "sku": "MON-524",
+      "orderedQty": 150,
+      "unitPrice": 197.14,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-319",
+      "vendor": "Blake and Sons",
+      "sku": "SVR-517",
+      "orderedQty": 20,
+      "unitPrice": 1438.83,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-320",
+      "vendor": "Perez Inc",
+      "sku": "CHR-554",
+      "orderedQty": 50,
+      "unitPrice": 478.73,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-321",
+      "vendor": "Morales-Jones",
+      "sku": "SSD-201",
+      "orderedQty": 150,
+      "unitPrice": 150.71,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-322",
+      "vendor": "Doyle Ltd",
+      "sku": "RTR-467",
+      "orderedQty": 5,
+      "unitPrice": 285.87,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-323",
+      "vendor": "James Group",
+      "sku": "BAT-968",
+      "orderedQty": 500,
+      "unitPrice": 76.39,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-324",
+      "vendor": "Acme Corp",
+      "sku": "CHR-757",
+      "orderedQty": 150,
+      "unitPrice": 333.83,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-325",
+      "vendor": "FastShip Logistics",
+      "sku": "LAP-905",
+      "orderedQty": 25,
+      "unitPrice": 986.14,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-326",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "PRN-678",
+      "orderedQty": 15,
+      "unitPrice": 174.54,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-327",
+      "vendor": "Perez Inc",
+      "sku": "DSK-312",
+      "orderedQty": 100,
+      "unitPrice": 279.57,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-328",
+      "vendor": "Morales-Jones",
+      "sku": "CHR-436",
+      "orderedQty": 250,
+      "unitPrice": 149.5,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-329",
+      "vendor": "FastShip Logistics",
+      "sku": "SVR-102",
+      "orderedQty": 20,
+      "unitPrice": 7466.36,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-330",
+      "vendor": "Office Depot",
+      "sku": "MON-653",
+      "orderedQty": 20,
+      "unitPrice": 742.04,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-331",
+      "vendor": "Blake and Sons",
+      "sku": "RTR-987",
+      "orderedQty": 5,
+      "unitPrice": 124.74,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-332",
+      "vendor": "Acme Corp",
+      "sku": "PRN-907",
+      "orderedQty": 15,
+      "unitPrice": 747.33,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-333",
+      "vendor": "Garcia-James",
+      "sku": "MON-371",
+      "orderedQty": 5,
+      "unitPrice": 218.74,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-334",
+      "vendor": "Abbott-Munoz",
+      "sku": "DSK-216",
+      "orderedQty": 200,
+      "unitPrice": 188.13,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-335",
+      "vendor": "Abbott-Munoz",
+      "sku": "PRN-470",
+      "orderedQty": 75,
+      "unitPrice": 752.63,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-336",
+      "vendor": "Gray-Mayo",
+      "sku": "DSK-326",
+      "orderedQty": 100,
+      "unitPrice": 176.02,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-337",
+      "vendor": "Abbott-Munoz",
+      "sku": "DSP-987",
+      "orderedQty": 150,
+      "unitPrice": 877.89,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-338",
+      "vendor": "Perez Inc",
+      "sku": "RTR-131",
+      "orderedQty": 5,
+      "unitPrice": 649.14,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-339",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "KBD-536",
+      "orderedQty": 150,
+      "unitPrice": 37.27,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-340",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "DSP-554",
+      "orderedQty": 10,
+      "unitPrice": 1369.05,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-341",
+      "vendor": "Williams and Sons",
+      "sku": "SVR-251",
+      "orderedQty": 10,
+      "unitPrice": 2121.2,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-342",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "RTR-699",
+      "orderedQty": 75,
+      "unitPrice": 475.85,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-343",
+      "vendor": "Williams and Sons",
+      "sku": "SVR-643",
+      "orderedQty": 20,
+      "unitPrice": 4512.12,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-344",
+      "vendor": "Perez Inc",
+      "sku": "KBD-201",
+      "orderedQty": 250,
+      "unitPrice": 132.28,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-345",
+      "vendor": "Perez Inc",
+      "sku": "RTR-766",
+      "orderedQty": 250,
+      "unitPrice": 378.56,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-346",
+      "vendor": "Garcia-James",
+      "sku": "CHR-540",
+      "orderedQty": 50,
+      "unitPrice": 453.12,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-347",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "SSD-947",
+      "orderedQty": 50,
+      "unitPrice": 160.6,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-348",
+      "vendor": "Davis and Sons",
+      "sku": "BAT-420",
+      "orderedQty": 30,
+      "unitPrice": 57.19,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-349",
+      "vendor": "Global Parts Co",
+      "sku": "SSD-256",
+      "orderedQty": 150,
+      "unitPrice": 325.74,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-350",
+      "vendor": "Office Depot",
+      "sku": "BAT-951",
+      "orderedQty": 10,
+      "unitPrice": 27.59,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-351",
+      "vendor": "Arnold Ltd",
+      "sku": "RAM-856",
+      "orderedQty": 25,
+      "unitPrice": 232.0,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-352",
+      "vendor": "James Group",
+      "sku": "LAP-700",
+      "orderedQty": 75,
+      "unitPrice": 1622.37,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-353",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "BAT-520",
+      "orderedQty": 25,
+      "unitPrice": 132.94,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-354",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "KBD-988",
+      "orderedQty": 200,
+      "unitPrice": 28.23,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-355",
+      "vendor": "Dudley Group",
+      "sku": "SVR-419",
+      "orderedQty": 25,
+      "unitPrice": 1956.28,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-356",
+      "vendor": "Perez Inc",
+      "sku": "CHR-258",
+      "orderedQty": 150,
+      "unitPrice": 286.7,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-357",
+      "vendor": "Office Depot",
+      "sku": "BAT-458",
+      "orderedQty": 500,
+      "unitPrice": 90.1,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-358",
+      "vendor": "Garcia-James",
+      "sku": "PRN-385",
+      "orderedQty": 100,
+      "unitPrice": 348.0,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-359",
+      "vendor": "Williams and Sons",
+      "sku": "CAM-674",
+      "orderedQty": 250,
+      "unitPrice": 291.9,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-360",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "RTR-758",
+      "orderedQty": 75,
+      "unitPrice": 60.88,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-361",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "RTR-949",
+      "orderedQty": 200,
+      "unitPrice": 206.81,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-362",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "CAB-819",
+      "orderedQty": 250,
+      "unitPrice": 14.94,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-363",
+      "vendor": "Mcclure, Ward and Lee",
+      "sku": "SSD-106",
+      "orderedQty": 12,
+      "unitPrice": 309.01,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-364",
+      "vendor": "Galloway-Wyatt",
+      "sku": "RTR-510",
+      "orderedQty": 10,
+      "unitPrice": 130.83,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-365",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "LAP-193",
+      "orderedQty": 200,
+      "unitPrice": 1559.97,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-366",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "KBD-564",
+      "orderedQty": 25,
+      "unitPrice": 45.19,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-367",
+      "vendor": "Williams and Sons",
+      "sku": "RAM-432",
+      "orderedQty": 250,
+      "unitPrice": 265.06,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-368",
+      "vendor": "Williams and Sons",
+      "sku": "BAT-153",
+      "orderedQty": 12,
+      "unitPrice": 36.25,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-369",
+      "vendor": "James Group",
+      "sku": "LAP-790",
+      "orderedQty": 10,
+      "unitPrice": 1043.21,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-370",
+      "vendor": "Davis and Sons",
+      "sku": "KBD-597",
+      "orderedQty": 100,
+      "unitPrice": 90.73,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-371",
+      "vendor": "Garcia-James",
+      "sku": "CHR-873",
+      "orderedQty": 75,
+      "unitPrice": 135.67,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-372",
+      "vendor": "Blair PLC",
+      "sku": "BAT-390",
+      "orderedQty": 150,
+      "unitPrice": 106.6,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-373",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "DSK-783",
+      "orderedQty": 20,
+      "unitPrice": 177.25,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-374",
+      "vendor": "Doyle Ltd",
+      "sku": "SVR-156",
+      "orderedQty": 5,
+      "unitPrice": 2692.29,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-375",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "PRN-240",
+      "orderedQty": 250,
+      "unitPrice": 380.33,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-376",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "BAT-107",
+      "orderedQty": 50,
+      "unitPrice": 115.85,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-377",
+      "vendor": "Dudley Group",
+      "sku": "MON-489",
+      "orderedQty": 75,
+      "unitPrice": 668.16,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-378",
+      "vendor": "Global Parts Co",
+      "sku": "DSK-953",
+      "orderedQty": 150,
+      "unitPrice": 633.72,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-379",
+      "vendor": "Acme Corp",
+      "sku": "KBD-982",
+      "orderedQty": 200,
+      "unitPrice": 26.77,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-380",
+      "vendor": "Garcia-James",
+      "sku": "MSE-179",
+      "orderedQty": 500,
+      "unitPrice": 36.61,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-381",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "SVR-514",
+      "orderedQty": 200,
+      "unitPrice": 5873.03,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-382",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "BAT-514",
+      "orderedQty": 5,
+      "unitPrice": 145.44,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-383",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "PRN-732",
+      "orderedQty": 50,
+      "unitPrice": 1015.06,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-384",
+      "vendor": "Mcclain, Miller and Henderson",
+      "sku": "SSD-190",
+      "orderedQty": 30,
+      "unitPrice": 301.01,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-385",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "KBD-703",
+      "orderedQty": 30,
+      "unitPrice": 103.83,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-386",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "CAM-417",
+      "orderedQty": 200,
+      "unitPrice": 138.64,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-387",
+      "vendor": "Office Depot",
+      "sku": "PRN-272",
+      "orderedQty": 10,
+      "unitPrice": 661.04,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-388",
+      "vendor": "Blake and Sons",
+      "sku": "DSK-622",
+      "orderedQty": 15,
+      "unitPrice": 693.55,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-389",
+      "vendor": "FastShip Logistics",
+      "sku": "SSD-844",
+      "orderedQty": 500,
+      "unitPrice": 238.31,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-390",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "CHR-205",
+      "orderedQty": 12,
+      "unitPrice": 193.95,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-391",
+      "vendor": "Global Parts Co",
+      "sku": "SVR-256",
+      "orderedQty": 250,
+      "unitPrice": 6741.81,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-392",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "MON-891",
+      "orderedQty": 150,
+      "unitPrice": 504.92,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-393",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "SVR-878",
+      "orderedQty": 100,
+      "unitPrice": 4477.01,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-394",
+      "vendor": "Williams and Sons",
+      "sku": "DSP-678",
+      "orderedQty": 150,
+      "unitPrice": 1025.89,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-395",
+      "vendor": "Abbott-Munoz",
+      "sku": "SSD-984",
+      "orderedQty": 150,
+      "unitPrice": 134.58,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-396",
+      "vendor": "Gray-Mayo",
+      "sku": "BAT-580",
+      "orderedQty": 50,
+      "unitPrice": 100.24,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-397",
+      "vendor": "Global Parts Co",
+      "sku": "CAB-705",
+      "orderedQty": 5,
+      "unitPrice": 16.81,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-398",
+      "vendor": "Blake and Sons",
+      "sku": "CAB-572",
+      "orderedQty": 50,
+      "unitPrice": 3.14,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-399",
+      "vendor": "Perez Inc",
+      "sku": "CAM-393",
+      "orderedQty": 10,
+      "unitPrice": 236.29,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-400",
+      "vendor": "Abbott-Munoz",
+      "sku": "BAT-729",
+      "orderedQty": 100,
+      "unitPrice": 83.45,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-401",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "SVR-667",
+      "orderedQty": 250,
+      "unitPrice": 6594.12,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-402",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "MSE-929",
+      "orderedQty": 100,
+      "unitPrice": 65.41,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-403",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "SVR-587",
+      "orderedQty": 75,
+      "unitPrice": 2301.29,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-404",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "MSE-205",
+      "orderedQty": 250,
+      "unitPrice": 86.43,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-405",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "RAM-186",
+      "orderedQty": 75,
+      "unitPrice": 189.76,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-406",
+      "vendor": "Dudley Group",
+      "sku": "CHR-824",
+      "orderedQty": 50,
+      "unitPrice": 495.3,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-407",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "DSK-724",
+      "orderedQty": 12,
+      "unitPrice": 368.34,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-408",
+      "vendor": "James Group",
+      "sku": "CAB-496",
+      "orderedQty": 30,
+      "unitPrice": 35.19,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-409",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "SVR-153",
+      "orderedQty": 250,
+      "unitPrice": 5805.47,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-410",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "BAT-437",
+      "orderedQty": 10,
+      "unitPrice": 90.33,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-411",
+      "vendor": "Walter, Edwards and Rios",
+      "sku": "CAB-358",
+      "orderedQty": 200,
+      "unitPrice": 38.54,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-412",
+      "vendor": "Mcclure, Ward and Lee",
+      "sku": "SVR-994",
+      "orderedQty": 12,
+      "unitPrice": 3633.54,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-413",
+      "vendor": "Galloway-Wyatt",
+      "sku": "RTR-244",
+      "orderedQty": 25,
+      "unitPrice": 232.69,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-414",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "RAM-778",
+      "orderedQty": 30,
+      "unitPrice": 57.88,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-415",
+      "vendor": "Gray-Mayo",
+      "sku": "BAT-417",
+      "orderedQty": 75,
+      "unitPrice": 65.85,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-416",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "SSD-932",
+      "orderedQty": 12,
+      "unitPrice": 246.09,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-417",
+      "vendor": "James Group",
+      "sku": "RAM-801",
+      "orderedQty": 75,
+      "unitPrice": 48.83,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-418",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "KBD-620",
+      "orderedQty": 25,
+      "unitPrice": 22.92,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-419",
+      "vendor": "Blair PLC",
+      "sku": "MON-319",
+      "orderedQty": 25,
+      "unitPrice": 858.23,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-420",
+      "vendor": "Guzman, Hoffman and Baldwin",
+      "sku": "CHR-331",
+      "orderedQty": 12,
+      "unitPrice": 152.53,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-421",
+      "vendor": "Arnold Ltd",
+      "sku": "CAM-907",
+      "orderedQty": 10,
+      "unitPrice": 192.46,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-422",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "CAM-856",
+      "orderedQty": 75,
+      "unitPrice": 42.08,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-423",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "DSP-884",
+      "orderedQty": 100,
+      "unitPrice": 370.36,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-424",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "MON-266",
+      "orderedQty": 12,
+      "unitPrice": 767.62,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-425",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "SVR-928",
+      "orderedQty": 12,
+      "unitPrice": 6464.64,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-426",
+      "vendor": "Abbott-Munoz",
+      "sku": "KBD-473",
+      "orderedQty": 150,
+      "unitPrice": 135.13,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-427",
+      "vendor": "Abbott-Munoz",
+      "sku": "SVR-391",
+      "orderedQty": 250,
+      "unitPrice": 6664.32,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-428",
+      "vendor": "Gray-Mayo",
+      "sku": "CHR-646",
+      "orderedQty": 15,
+      "unitPrice": 215.88,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-429",
+      "vendor": "James Group",
+      "sku": "PRN-580",
+      "orderedQty": 500,
+      "unitPrice": 312.61,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-430",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "SVR-551",
+      "orderedQty": 50,
+      "unitPrice": 6816.9,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-431",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "KBD-614",
+      "orderedQty": 75,
+      "unitPrice": 86.99,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-432",
+      "vendor": "Perez Inc",
+      "sku": "CAM-304",
+      "orderedQty": 250,
+      "unitPrice": 223.49,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-433",
+      "vendor": "Blake and Sons",
+      "sku": "CAB-153",
+      "orderedQty": 150,
+      "unitPrice": 22.41,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-434",
+      "vendor": "Perez Inc",
+      "sku": "DSK-205",
+      "orderedQty": 200,
+      "unitPrice": 657.54,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-435",
+      "vendor": "Davis and Sons",
+      "sku": "BAT-391",
+      "orderedQty": 10,
+      "unitPrice": 118.02,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-436",
+      "vendor": "Global Parts Co",
+      "sku": "MSE-625",
+      "orderedQty": 12,
+      "unitPrice": 80.64,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-437",
+      "vendor": "Blake and Sons",
+      "sku": "DSP-327",
+      "orderedQty": 500,
+      "unitPrice": 786.47,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-438",
+      "vendor": "Dudley Group",
+      "sku": "DSP-127",
+      "orderedQty": 30,
+      "unitPrice": 269.23,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-439",
+      "vendor": "Blake and Sons",
+      "sku": "SSD-341",
+      "orderedQty": 30,
+      "unitPrice": 348.28,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-440",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "CHR-128",
+      "orderedQty": 25,
+      "unitPrice": 470.64,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-441",
+      "vendor": "FastShip Logistics",
+      "sku": "RAM-765",
+      "orderedQty": 25,
+      "unitPrice": 226.8,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-442",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "LAP-393",
+      "orderedQty": 500,
+      "unitPrice": 1443.91,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-443",
+      "vendor": "Williams and Sons",
+      "sku": "MON-877",
+      "orderedQty": 200,
+      "unitPrice": 485.44,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-444",
+      "vendor": "Watts, Robinson and Nguyen",
+      "sku": "LAP-181",
+      "orderedQty": 5,
+      "unitPrice": 1010.85,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-445",
+      "vendor": "Garcia-James",
+      "sku": "MON-661",
+      "orderedQty": 200,
+      "unitPrice": 594.32,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-446",
+      "vendor": "Office Depot",
+      "sku": "BAT-894",
+      "orderedQty": 20,
+      "unitPrice": 47.08,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-447",
+      "vendor": "Williams and Sons",
+      "sku": "LAP-344",
+      "orderedQty": 30,
+      "unitPrice": 1776.9,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-448",
+      "vendor": "Blair PLC",
+      "sku": "MSE-164",
+      "orderedQty": 10,
+      "unitPrice": 81.12,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-449",
+      "vendor": "Mcclure, Ward and Lee",
+      "sku": "SVR-648",
+      "orderedQty": 5,
+      "unitPrice": 5813.27,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-450",
+      "vendor": "Acme Corp",
+      "sku": "CHR-835",
+      "orderedQty": 12,
+      "unitPrice": 208.42,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-451",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "SVR-461",
+      "orderedQty": 15,
+      "unitPrice": 5365.85,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-452",
+      "vendor": "Blake and Sons",
+      "sku": "RTR-784",
+      "orderedQty": 10,
+      "unitPrice": 361.71,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-453",
+      "vendor": "Dudley Group",
+      "sku": "BAT-638",
+      "orderedQty": 75,
+      "unitPrice": 83.49,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-454",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "DSK-120",
+      "orderedQty": 30,
+      "unitPrice": 674.0,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-455",
+      "vendor": "Acme Corp",
+      "sku": "RTR-496",
+      "orderedQty": 25,
+      "unitPrice": 198.46,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-456",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "SSD-907",
+      "orderedQty": 10,
+      "unitPrice": 143.61,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-457",
+      "vendor": "Adams, Zuniga and Wong",
+      "sku": "RTR-743",
+      "orderedQty": 10,
+      "unitPrice": 511.76,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-458",
+      "vendor": "Arnold Ltd",
+      "sku": "PRN-440",
+      "orderedQty": 12,
+      "unitPrice": 147.81,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-459",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "SSD-933",
+      "orderedQty": 150,
+      "unitPrice": 90.15,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-460",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "RTR-575",
+      "orderedQty": 200,
+      "unitPrice": 334.51,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-461",
+      "vendor": "Abbott-Munoz",
+      "sku": "PRN-238",
+      "orderedQty": 10,
+      "unitPrice": 887.37,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-462",
+      "vendor": "Doyle Ltd",
+      "sku": "LAP-400",
+      "orderedQty": 15,
+      "unitPrice": 586.61,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-463",
+      "vendor": "Dudley Group",
+      "sku": "DSP-142",
+      "orderedQty": 25,
+      "unitPrice": 1413.38,
+      "hsCode": "8528.59"
+    },
+    {
+      "poNumber": "PO-464",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "KBD-934",
+      "orderedQty": 75,
+      "unitPrice": 95.74,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-465",
+      "vendor": "Perez Inc",
+      "sku": "PRN-762",
+      "orderedQty": 15,
+      "unitPrice": 414.01,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-466",
+      "vendor": "Davis and Sons",
+      "sku": "PRN-148",
+      "orderedQty": 500,
+      "unitPrice": 820.96,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-467",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "BAT-918",
+      "orderedQty": 25,
+      "unitPrice": 73.99,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-468",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "RAM-550",
+      "orderedQty": 30,
+      "unitPrice": 111.45,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-469",
+      "vendor": "Gray-Mayo",
+      "sku": "MSE-808",
+      "orderedQty": 50,
+      "unitPrice": 41.22,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-470",
+      "vendor": "Garcia-James",
+      "sku": "DSK-373",
+      "orderedQty": 250,
+      "unitPrice": 199.57,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-471",
+      "vendor": "Rodriguez, Figueroa and Sanchez",
+      "sku": "BAT-540",
+      "orderedQty": 100,
+      "unitPrice": 149.34,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-472",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "DSK-400",
+      "orderedQty": 25,
+      "unitPrice": 211.56,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-473",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "RTR-402",
+      "orderedQty": 20,
+      "unitPrice": 314.78,
+      "hsCode": "8517.62"
+    },
+    {
+      "poNumber": "PO-474",
+      "vendor": "Abbott-Munoz",
+      "sku": "KBD-270",
+      "orderedQty": 200,
+      "unitPrice": 91.03,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-475",
+      "vendor": "Williams and Sons",
+      "sku": "LAP-844",
+      "orderedQty": 500,
+      "unitPrice": 2322.21,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-476",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "KBD-381",
+      "orderedQty": 150,
+      "unitPrice": 176.8,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-477",
+      "vendor": "Dudley Group",
+      "sku": "BAT-787",
+      "orderedQty": 150,
+      "unitPrice": 69.84,
+      "hsCode": "8507.60"
+    },
+    {
+      "poNumber": "PO-478",
+      "vendor": "Acme Corp",
+      "sku": "PRN-867",
+      "orderedQty": 150,
+      "unitPrice": 275.15,
+      "hsCode": "8443.32"
+    },
+    {
+      "poNumber": "PO-479",
+      "vendor": "Abbott-Munoz",
+      "sku": "MON-969",
+      "orderedQty": 100,
+      "unitPrice": 648.23,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-480",
+      "vendor": "Galloway-Wyatt",
+      "sku": "LAP-229",
+      "orderedQty": 10,
+      "unitPrice": 970.99,
+      "hsCode": "8471.30"
+    },
+    {
+      "poNumber": "PO-481",
+      "vendor": "Tech Supplies Ltd",
+      "sku": "SSD-470",
+      "orderedQty": 30,
+      "unitPrice": 334.08,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-482",
+      "vendor": "Blake and Sons",
+      "sku": "SVR-257",
+      "orderedQty": 150,
+      "unitPrice": 4484.43,
+      "hsCode": "8471.50"
+    },
+    {
+      "poNumber": "PO-483",
+      "vendor": "FastShip Logistics",
+      "sku": "SSD-554",
+      "orderedQty": 250,
+      "unitPrice": 59.22,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-484",
+      "vendor": "Davis and Sons",
+      "sku": "DSK-475",
+      "orderedQty": 30,
+      "unitPrice": 338.63,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-485",
+      "vendor": "Blair PLC",
+      "sku": "CHR-216",
+      "orderedQty": 5,
+      "unitPrice": 390.63,
+      "hsCode": "9401.30"
+    },
+    {
+      "poNumber": "PO-486",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "DSK-496",
+      "orderedQty": 75,
+      "unitPrice": 220.66,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-487",
+      "vendor": "Williams and Sons",
+      "sku": "CAB-820",
+      "orderedQty": 50,
+      "unitPrice": 10.83,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-488",
+      "vendor": "FastShip Logistics",
+      "sku": "CAB-810",
+      "orderedQty": 50,
+      "unitPrice": 10.21,
+      "hsCode": "8544.42"
+    },
+    {
+      "poNumber": "PO-489",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "CAM-175",
+      "orderedQty": 50,
+      "unitPrice": 85.25,
+      "hsCode": "8525.80"
+    },
+    {
+      "poNumber": "PO-490",
+      "vendor": "Perez Inc",
+      "sku": "MSE-189",
+      "orderedQty": 250,
+      "unitPrice": 67.96,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-491",
+      "vendor": "Arnold Ltd",
+      "sku": "SSD-783",
+      "orderedQty": 25,
+      "unitPrice": 258.51,
+      "hsCode": "8471.70"
+    },
+    {
+      "poNumber": "PO-492",
+      "vendor": "Flowers, Martin and Kelly",
+      "sku": "DSK-397",
+      "orderedQty": 20,
+      "unitPrice": 660.82,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-493",
+      "vendor": "Blake and Sons",
+      "sku": "RAM-817",
+      "orderedQty": 150,
+      "unitPrice": 69.39,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-494",
+      "vendor": "Gray-Mayo",
+      "sku": "DSK-329",
+      "orderedQty": 10,
+      "unitPrice": 741.08,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-495",
+      "vendor": "Blake and Sons",
+      "sku": "MON-342",
+      "orderedQty": 250,
+      "unitPrice": 504.84,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-496",
+      "vendor": "Arnold Ltd",
+      "sku": "DSK-686",
+      "orderedQty": 25,
+      "unitPrice": 430.44,
+      "hsCode": "9403.10"
+    },
+    {
+      "poNumber": "PO-497",
+      "vendor": "Henderson, Ramirez and Lewis",
+      "sku": "MON-726",
+      "orderedQty": 10,
+      "unitPrice": 171.22,
+      "hsCode": "8528.52"
+    },
+    {
+      "poNumber": "PO-498",
+      "vendor": "Reid, Ferguson and Sanchez",
+      "sku": "RAM-836",
+      "orderedQty": 50,
+      "unitPrice": 159.05,
+      "hsCode": "8473.30"
+    },
+    {
+      "poNumber": "PO-499",
+      "vendor": "Gardner, Robinson and Lawrence",
+      "sku": "KBD-943",
+      "orderedQty": 100,
+      "unitPrice": 31.8,
+      "hsCode": "8471.60"
+    },
+    {
+      "poNumber": "PO-500",
+      "vendor": "Dudley Group",
+      "sku": "RTR-175",
+      "orderedQty": 50,
+      "unitPrice": 326.83,
+      "hsCode": "8517.62"
     }
   ]
 }
