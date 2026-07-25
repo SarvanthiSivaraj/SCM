@@ -1,5 +1,5 @@
 import { Injectable } from '@nitrostack/core';
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 import { DatabaseService } from '../../shared/database.service.js';
 
 // ─── Row type ─────────────────────────────────────────────────────────────────
@@ -13,6 +13,7 @@ export interface ExceptionRecord {
   status:        'flagged' | 'under_review' | 'resolved' | 'dismissed';
   createdAt:     string;
   resolvedAt:    string | null;
+  data?:         unknown;
 }
 
 // ─── Service ─────────────────────────────────────────────────────────────────
@@ -28,19 +29,25 @@ export class ExceptionService {
   async flag(
     workflowId:    string,
     reason:        string,
-    data:          unknown,
+    data?:         unknown,
     invoiceNumber?: string,
   ): Promise<ExceptionRecord> {
     const exceptionId   = randomUUID();
     const discrepancies = this.extractDiscrepancies(data);
     const now           = new Date().toISOString();
 
+    const invNum =
+      invoiceNumber ??
+      (data !== null && typeof data === 'object' && 'invoiceNumber' in data
+        ? String((data as Record<string, unknown>)['invoiceNumber'])
+        : null);
+
     await this.database.sql(
       `INSERT INTO exceptions
          (workflow_id, invoice_number, reason, discrepancies, status, created_at)
        VALUES (?, ?, ?, ?, 'flagged', ?)`,
       workflowId,
-      invoiceNumber ?? null,
+      invNum,
       reason,
       JSON.stringify(discrepancies),
       now,
@@ -49,12 +56,13 @@ export class ExceptionService {
     return {
       exceptionId,
       workflowId,
-      invoiceNumber:  invoiceNumber ?? null,
+      invoiceNumber:  invNum,
       reason,
       discrepancies,
       status:         'flagged',
       createdAt:      now,
       resolvedAt:     null,
+      data,
     };
   }
 

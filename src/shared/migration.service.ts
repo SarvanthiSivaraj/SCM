@@ -161,6 +161,34 @@ const MIGRATIONS: Migration[] = [
       INSERT OR IGNORE INTO hs_code_fts(hs_code_fts) VALUES('rebuild');
     `,
   },
+
+  // ── v6: AP Invoice Automation tables ─────────────────────────────────────
+  {
+    version: 6,
+    description: 'Add goods_receipts, fx_rates, and approval_thresholds tables',
+    up: `
+      CREATE TABLE IF NOT EXISTS goods_receipts (
+        id            INTEGER PRIMARY KEY AUTOINCREMENT,
+        po_number     TEXT REFERENCES purchase_orders(po_number),
+        sku           TEXT,
+        received_qty  INTEGER,
+        received_date TEXT
+      );
+
+      CREATE TABLE IF NOT EXISTS fx_rates (
+        currency_pair TEXT PRIMARY KEY,
+        rate          REAL,
+        as_of_date    TEXT
+      );
+
+      CREATE TABLE IF NOT EXISTS approval_thresholds (
+        id                    INTEGER PRIMARY KEY AUTOINCREMENT,
+        min_amount            REAL NOT NULL,
+        max_amount            REAL,
+        required_approver_role TEXT NOT NULL
+      );
+    `,
+  },
 ];
 
 // ─── Service ─────────────────────────────────────────────────────────────────
