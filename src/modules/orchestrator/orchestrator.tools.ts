@@ -201,7 +201,7 @@ export class OrchestratorTools {
   // ── internal helper ──────────────────────────────────────────────────────
 
   private async validateAndGetPO(poNumber: string, _workflowId: string) {
-    const po = this.masterData.findPO(poNumber);
+    const po = await this.masterData.findPO(poNumber);
     return { exists: po !== null, poRecord: po };
   }
 }

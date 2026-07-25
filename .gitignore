@@ -55,3 +55,6 @@ uploads/
 *.pem
 *.key
 tokens.json
+
+# Generated local SQLite database (use scripts/generate-local-db.ts to recreate)
+data/*.db
