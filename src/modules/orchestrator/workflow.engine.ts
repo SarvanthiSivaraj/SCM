@@ -1,8 +1,8 @@
 import { Injectable } from '@nitrostack/core';
 import type { ExecutionContext } from '@nitrostack/core';
-import type { SopLoaderService, StepDefinition, OnErrorPolicy } from './sop-loader.service.js';
-import type { WorkflowContextStore, StepResult } from './workflow-context.store.js';
-import type { ExceptionService } from './exception.service.js';
+import { SopLoaderService, type StepDefinition, type OnErrorPolicy } from './sop-loader.service.js';
+import { WorkflowContextStore, type StepResult } from './workflow-context.store.js';
+import { ExceptionService } from './exception.service.js';
 
 // ─── Step handler function signature ─────────────────────────────────────────
 

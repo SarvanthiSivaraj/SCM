@@ -1,5 +1,5 @@
 import { Injectable, OnModuleInit } from '@nitrostack/core';
-import type { DatabaseService } from './database.service.js';
+import { DatabaseService } from './database.service.js';
 
 /**
  * MigrationService — runs numbered, idempotent DDL migrations on startup.
