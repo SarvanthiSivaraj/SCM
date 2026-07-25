@@ -35,6 +35,15 @@ function buildSummary(
   exitStep?: string,
   exitReason?: string,
 ): string {
+  // Compliance BLOCKED — surface the reason directly
+  const compliance = data['complianceResult'] as { status?: string; matches?: Array<{ entity_name: string; reason: string }> } | undefined;
+  if (compliance?.status === 'BLOCKED') {
+    const match   = compliance.matches?.[0];
+    const invoice = data['invoice'] as ExtractedInvoice | undefined;
+    const vendor  = invoice?.vendor ?? match?.entity_name ?? 'Unknown vendor';
+    return `Vendor "${vendor}" is on the denied parties list and has been BLOCKED. Reason: ${match?.reason ?? exitReason ?? 'compliance violation'}. Workflow halted — routed to legal_team.`;
+  }
+
   if (status === 'failed') {
     return `Workflow failed at step "${exitStep}": ${exitReason}`;
   }
@@ -60,7 +69,12 @@ function resolveStatus(
   engineStatus: string,
   data: Record<string, unknown>,
 ): string {
-  if (engineStatus === 'failed') return 'failed';
+  // Compliance BLOCKED aborts the engine with status 'failed' — normalise to
+  // 'exception' so analytics SQL (which counts status = 'exception') stays consistent.
+  if (engineStatus === 'failed') {
+    const compliance = data['complianceResult'] as { status?: string } | undefined;
+    return compliance?.status === 'BLOCKED' ? 'exception' : 'exception';
+  }
   const vr = data['validationResult'] as ValidationResult | undefined;
   if (vr?.status === 'mismatch') return 'Flagged';
   if (data['__po_missing'])       return 'exception';
@@ -69,9 +83,9 @@ function resolveStatus(
 
   // Check AP result for final status
   const apResult = data['apResult'] as { status?: string } | undefined;
-  if (apResult?.status === 'auto_approved') return 'Auto-approved';
+  if (apResult?.status === 'auto_approved')    return 'Auto-approved';
   if (apResult?.status === 'pending_approval') return 'Pending-approval';
-  if (apResult?.status === 'duplicate') return 'Duplicate';
+  if (apResult?.status === 'duplicate')        return 'Duplicate';
 
   return 'Auto-approved';
 }
@@ -313,6 +327,7 @@ export class OrchestratorTools {
         po:               result.data['po'],
         validationResult: result.data['validationResult'],
         hsCodeResult:     result.data['hsCodeResult'],
+        complianceResult: result.data['complianceResult'],
         classification:   result.data['classification'],
         apResult:         result.data['apResult'],
       },
