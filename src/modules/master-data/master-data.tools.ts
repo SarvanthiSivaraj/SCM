@@ -13,6 +13,11 @@ const HS_MOCK: Record<string, { hsCode: string; description: string }> = {
   battery:  { hsCode: '8507.60', description: 'Lithium-ion accumulators' },
   monitor:  { hsCode: '8528.52', description: 'LCD monitors' },
   chair:    { hsCode: '9401.30', description: 'Swivel seats with variable height adjustment' },
+  cable:    { hsCode: '8544.42', description: 'Electric conductors, voltage ≤80 V' },
+  ssd:      { hsCode: '8471.70', description: 'Solid state storage devices' },
+  keyboard: { hsCode: '8471.60', description: 'Input units for ADP machines' },
+  mouse:    { hsCode: '8471.60', description: 'Input units for ADP machines' },
+  desk:     { hsCode: '9403.10', description: 'Metal furniture for offices' },
 };
 
 @Controller('master_data')
@@ -24,13 +29,13 @@ export class MasterDataTools {
   @Tool({
     name: 'validate_against_master_data',
     description:
-      'Check whether a SKU / PO number pair exists in the master data store. Pure lookup — no AI.',
+      'Check whether a SKU / PO number pair exists in the master data store (SQLite Cloud). Pure lookup — no AI.',
     inputSchema: z.object({
-      sku: z.string().describe('Product SKU to look up'),
+      sku:      z.string().describe('Product SKU to look up'),
       poNumber: z.string().describe('Purchase order number to look up'),
     }),
     outputSchema: z.object({
-      exists: z.boolean(),
+      exists:   z.boolean(),
       poRecord: PurchaseOrderSchema.nullable(),
     }),
   })
@@ -38,9 +43,9 @@ export class MasterDataTools {
     input: { sku: string; poNumber: string },
     _ctx: ExecutionContext,
   ) {
-    const po = this.svc.findPO(input.poNumber);
+    const po = await this.svc.findPO(input.poNumber);
     return {
-      exists: po !== null,
+      exists:   po !== null,
       poRecord: po,
     };
   }
@@ -55,8 +60,8 @@ export class MasterDataTools {
       productDescription: z.string().describe('Free-text product description'),
     }),
     outputSchema: z.object({
-      hsCode: z.string(),
-      confidence: z.number().min(0).max(1),
+      hsCode:      z.string(),
+      confidence:  z.number().min(0).max(1),
       description: z.string(),
     }),
   })
