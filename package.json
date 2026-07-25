@@ -13,7 +13,7 @@
     "install:all": "nitrostack-cli install",
     "widget": "npm --prefix src/widgets",
     "db:generate": "node --experimental-sqlite --import tsx/esm scripts/generate-local-db.ts",
-    "db:seed": "npx tsx scripts/seed-sqlite-cloud.ts"
+    "db:seed": ".venv/bin/python scripts/generate_mock_data.py && npx tsx scripts/seed-sqlite-cloud.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/ext-apps": ">=0.1.0",
