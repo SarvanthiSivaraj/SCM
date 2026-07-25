@@ -16,6 +16,7 @@ import { MasterDataTools } from '../master-data/master-data.tools.js';
 import { IngestionTools } from '../ingestion/ingestion.tools.js';
 import { ComplianceTools } from '../compliance/compliance.tools.js';
 import { AuditLogService } from '../../shared/audit-log.service.js';
+import { AlertService }    from '../communication/alert.service.js';
 import { ApInvoiceService } from '../ap-invoice/ap-invoice.service.js';
 import {
   ExtractedInvoiceSchema,
@@ -92,6 +93,7 @@ export class OrchestratorTools {
     private readonly complianceTools: ComplianceTools,
     private readonly auditLog:        AuditLogService,
     private readonly apInvoice:       ApInvoiceService,
+    private readonly alertService:    AlertService,
   ) {}
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -406,33 +408,67 @@ export class OrchestratorTools {
   }
 
   // ══════════════════════════════════════════════════════════════════════════
-  // route_task  (stubbed — Phase 2 will add Slack/email)
+  // route_task  (Phase 2 — real queue-backed email via CommunicationModule)
   // ══════════════════════════════════════════════════════════════════════════
 
   @Tool({
     name: 'route_task',
     description:
-      'Route a task to a stakeholder. STUBBED — logs to console. Real Slack/email is Phase 2.',
+      'Route a task to a stakeholder via email alert. Enqueues an email notification ' +
+      'through the Communication module (queue-backed, async delivery). ' +
+      'Use stakeholder as the recipient email address. ' +
+      'Returns immediately — track delivery with the communication.get_alert_status tool.',
     inputSchema: z.object({
       task:        z.string().describe('Task description'),
-      stakeholder: z.string().describe('Target stakeholder (e.g. finance_team)'),
+      stakeholder: z.string().describe('Recipient email address or stakeholder name (e.g. finance_team@ale.com)'),
       priority:    z.enum(['low', 'medium', 'high']).default('medium'),
     }),
     outputSchema: z.object({
-      routed:  z.boolean(),
-      message: z.string(),
+      routed:      z.boolean(),
+      alertQueueId:z.number().nullable(),
+      message:     z.string(),
     }),
   })
   async routeTask(
     input: { task: string; stakeholder: string; priority: string },
-    _ctx: ExecutionContext,
+    ctx: ExecutionContext,
   ) {
-    console.error(
-      `[ROUTE_TASK] → ${input.stakeholder} | priority=${input.priority} | task="${input.task}"`,
-    );
-    return {
-      routed:  true,
-      message: `Task routed to ${input.stakeholder} (stub — no real notification sent)`,
-    };
+    ctx.logger?.info(`[OrchestratorTools] route_task → ${input.stakeholder} | priority=${input.priority}`);
+
+    try {
+      const recipient = input.stakeholder.includes('@')
+        ? input.stakeholder
+        : `${input.stakeholder.replace(/[^a-z0-9]/gi, '.')}@ale-scm.internal`;
+
+      const { queueId } = await this.alertService.enqueue({
+        recipient,
+        template: 'task_routed',
+        payload: {
+          task:       input.task,
+          priority:   input.priority,
+          assignedBy: 'workflow_engine',
+        },
+      });
+
+      await this.auditLog.log({
+        toolName: 'route_task',
+        input:    { stakeholder: input.stakeholder, priority: input.priority },
+        output:   { alertQueueId: queueId },
+      });
+
+      return {
+        routed:       true,
+        alertQueueId: queueId,
+        message:      `Task enqueued for ${recipient} (alert #${queueId}, priority=${input.priority}).`,
+      };
+    } catch (err) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      console.error(`[OrchestratorTools] route_task failed to enqueue: ${errMsg}`);
+      return {
+        routed:       false,
+        alertQueueId: null,
+        message:      `Failed to enqueue alert: ${errMsg}`,
+      };
+    }
   }
 }
