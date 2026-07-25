@@ -1,34 +1,42 @@
-import { McpApp, Module, ConfigModule } from '@nitrostack/core';
-import { CalculatorModule } from './modules/calculator/calculator.module.js';
+import { McpApp, Module, ConfigModule, ApiKeyModule } from '@nitrostack/core';
 import { SystemHealthCheck } from './health/system.health.js';
+import { IngestionModule } from './modules/ingestion/ingestion.module.js';
+import { MasterDataModule } from './modules/master-data/master-data.module.js';
+import { OrchestratorModule } from './modules/orchestrator/orchestrator.module.js';
 
 /**
- * Root Application Module
- * 
- * This is the main module that bootstraps the MCP server.
- * It registers all feature modules and health checks.
+ * ALE SCM — MCP Server Root Module
+ *
+ * Modules:
+ *  - IngestionModule    (Person A) classify, extract
+ *  - MasterDataModule   (Person B) PO lookup, HS-code stub
+ *  - OrchestratorModule (Person C) workflow, validation, exceptions
+ *  - ApiKeyModule       (Person D) x-api-key guard
  */
 @McpApp({
   module: AppModule,
   server: {
-    name: 'calculator-server',
-    version: '1.0.0'
+    name: 'ale-scm-server',
+    version: '1.0.0',
   },
   logging: {
-    level: 'info'
-  }
+    level: 'info',
+  },
 })
 @Module({
   name: 'app',
-  description: 'Root application module',
+  description: 'ALE SCM MCP root module',
   imports: [
     ConfigModule.forRoot(),
-    CalculatorModule
+    ApiKeyModule.forRoot({
+      keysEnvPrefix: 'ALE_API_KEY',
+      headerName: 'x-api-key',
+      hashed: false,
+    }),
+    IngestionModule,
+    MasterDataModule,
+    OrchestratorModule,
   ],
-  providers: [
-    // Health Checks
-    SystemHealthCheck,
-  ]
+  providers: [SystemHealthCheck],
 })
 export class AppModule {}
-
