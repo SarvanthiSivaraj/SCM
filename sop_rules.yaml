@@ -10,6 +10,9 @@ workflows:
       - name: validate_po
         tool: validate_against_master_data
         on_error: "flag_and_route"
+      - name: hs_code
+        tool: recommend_hs_code
+        on_error: "continue"
       - name: match
         tool: match_invoice_to_po
         on_error: "continue"
@@ -20,3 +23,6 @@ workflows:
       missing_po:
         action: "route_task"
         route_to: "procurement_team"
+      extraction_failed:
+        action: "flag_exception"
+        route_to: "operations_team"

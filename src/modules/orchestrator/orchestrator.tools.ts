@@ -7,7 +7,11 @@ import {
 } from '@nitrostack/core';
 import { ValidationService } from './validation.service.js';
 import { ExceptionService } from './exception.service.js';
+import { WorkflowEngine, type StepHandler } from './workflow.engine.js';
+import { WorkflowContextStore } from './workflow-context.store.js';
+import { SopLoaderService } from './sop-loader.service.js';
 import { MasterDataService } from '../master-data/master-data.service.js';
+import { MasterDataTools } from '../master-data/master-data.tools.js';
 import { IngestionTools } from '../ingestion/ingestion.tools.js';
 import {
   ExtractedInvoiceSchema,
@@ -18,105 +22,87 @@ import {
   type ValidationResult,
 } from '../../shared/schemas.js';
 
+// ─── helper: build a short plain-English summary from engine output ───────────
+
+function buildSummary(
+  status: string,
+  data: Record<string, unknown>,
+  exitStep?: string,
+  exitReason?: string,
+): string {
+  if (status === 'failed') {
+    return `Workflow failed at step "${exitStep}": ${exitReason}`;
+  }
+
+  const invoice = data['invoice'] as ExtractedInvoice | undefined;
+  const vr      = data['validationResult'] as ValidationResult | undefined;
+
+  if (vr?.status === 'mismatch') {
+    return `Mismatch detected on invoice ${invoice?.invoiceNumber ?? ''}. Discrepancies: ${vr.discrepancies.join('; ')}`;
+  }
+  if (data['__po_missing']) {
+    return `PO ${(data['poNumber'] as string) ?? ''} not found in master data. Routed to procurement_team.`;
+  }
+  if (invoice) {
+    return `Invoice ${invoice.invoiceNumber} matched PO ${invoice.poNumber} successfully.`;
+  }
+  return 'Workflow completed.';
+}
+
+// ─── helper: resolve final workflow status label ──────────────────────────────
+
+function resolveStatus(
+  engineStatus: string,
+  data: Record<string, unknown>,
+): string {
+  if (engineStatus === 'failed') return 'failed';
+  const vr = data['validationResult'] as ValidationResult | undefined;
+  if (vr?.status === 'mismatch') return 'Flagged';
+  if (data['__po_missing'])       return 'exception';
+  const classification = data['classification'] as { docType: string } | undefined;
+  if (classification?.docType !== 'invoice') return 'aborted';
+  return 'Auto-approved';
+}
+
+// ─── Controller ───────────────────────────────────────────────────────────────
+
 @Controller('orchestrator')
 export class OrchestratorTools {
   constructor(
-    private readonly validation: ValidationService,
-    private readonly exceptions: ExceptionService,
-    private readonly masterData: MasterDataService,
-    private readonly ingestion: IngestionTools,
+    private readonly validation:   ValidationService,
+    private readonly exceptions:   ExceptionService,
+    private readonly engine:       WorkflowEngine,
+    private readonly store:        WorkflowContextStore,
+    private readonly sop:          SopLoaderService,
+    private readonly masterData:   MasterDataService,
+    private readonly masterDataTools: MasterDataTools,
+    private readonly ingestion:    IngestionTools,
   ) {}
 
-  // ── match_invoice_to_po ──────────────────────────────────────────────────
-
-  @Tool({
-    name: 'match_invoice_to_po',
-    description:
-      'Compare an extracted invoice against a purchase order. Returns match/mismatch/exception status with discrepancy details.',
-    inputSchema: z.object({
-      invoice: ExtractedInvoiceSchema.describe('The extracted invoice data'),
-      po: PurchaseOrderSchema.describe('The purchase order to match against'),
-    }),
-    outputSchema: ValidationResultSchema,
-  })
-  async matchInvoiceToPO(
-    input: { invoice: ExtractedInvoice; po: PurchaseOrder },
-    _ctx: ExecutionContext,
-  ): Promise<ValidationResult> {
-    return this.validation.matchInvoiceToPO(input.invoice, input.po);
-  }
-
-  // ── flag_exception ───────────────────────────────────────────────────────
-
-  @Tool({
-    name: 'flag_exception',
-    description: 'Log a workflow exception to the local exceptions store.',
-    inputSchema: z.object({
-      workflowId: z.string().describe('Workflow identifier'),
-      reason: z.string().describe('Human-readable reason for the exception'),
-      data: z.any().describe('Arbitrary payload (invoice diff, validation result, etc.)'),
-    }),
-    outputSchema: z.object({
-      exceptionId: z.string(),
-      status: z.literal('flagged'),
-    }),
-  })
-  async flagException(
-    input: { workflowId: string; reason: string; data: unknown },
-    _ctx: ExecutionContext,
-  ) {
-    const record = this.exceptions.flag(input.workflowId, input.reason, input.data);
-    return { exceptionId: record.exceptionId, status: 'flagged' as const };
-  }
-
-  // ── route_task ───────────────────────────────────────────────────────────
-
-  @Tool({
-    name: 'route_task',
-    description:
-      'Route a task to a stakeholder. STUBBED — logs to console. Real Slack/email integration is Phase 2.',
-    inputSchema: z.object({
-      task: z.string().describe('Task description'),
-      stakeholder: z.string().describe('Target stakeholder (e.g. finance_team)'),
-      priority: z.enum(['low', 'medium', 'high']).default('medium'),
-    }),
-    outputSchema: z.object({
-      routed: z.boolean(),
-      message: z.string(),
-    }),
-  })
-  async routeTask(
-    input: { task: string; stakeholder: string; priority: string },
-    _ctx: ExecutionContext,
-  ) {
-    // STUB: log only
-    console.error(
-      `[ROUTE_TASK] → ${input.stakeholder} | priority=${input.priority} | task="${input.task}"`,
-    );
-    return {
-      routed: true,
-      message: `Task routed to ${input.stakeholder} (stub — no real notification sent)`,
-    };
-  }
-
-  // ── execute_workflow ─────────────────────────────────────────────────────
+  // ══════════════════════════════════════════════════════════════════════════
+  // execute_workflow
+  // ══════════════════════════════════════════════════════════════════════════
 
   @Tool({
     name: 'execute_workflow',
     description:
-      'Run the full invoice processing workflow: classify → extract → validate PO → match → flag/route exceptions.',
+      'Run the full invoice processing pipeline driven by sop_rules.yaml: ' +
+      'classify → extract → validate PO → recommend HS code → match → flag/route exceptions. ' +
+      'Pass a plain-text invoice document.',
     inputSchema: z.object({
       workflowId: z.literal('invoice_processing'),
       input: z.object({
-        file_name: z.string().describe('Document file name'),
+        file_name:    z.string().describe('Document filename (e.g. invoice_001.txt)'),
         file_content: z.string().describe('Plain-text document content (or base64 for PDF)'),
-        file_type: z.string().default('text/plain').describe('MIME type'),
+        file_type:    z.string().default('text/plain').describe('MIME type'),
       }),
     }),
     outputSchema: z.object({
-      status: z.string(),
-      summary: z.string(),
-      output: z.any(),
+      workflowRunId: z.string(),
+      status:        z.string(),
+      summary:       z.string(),
+      stepResults:   z.array(z.any()),
+      output:        z.any(),
     }),
   })
   @Widget('invoice-result')
@@ -127,81 +113,245 @@ export class OrchestratorTools {
     },
     ctx: ExecutionContext,
   ) {
-    const { file_name, file_content } = input.input;
-    const workflowId = `wf_${Date.now()}`;
+    const { file_name, file_content, file_type } = input.input;
 
-    // Step 1 — classify
-    const classification = await this.ingestion.classifyDocument(
-      { filename: file_name, content: file_content },
-      ctx,
-    );
+    // ── Register step handlers (name matches sop_rules.yaml step.name) ────────
 
-    if (classification.docType !== 'invoice') {
-      return {
-        status: 'aborted',
-        summary: `Document classified as '${classification.docType}', not an invoice. Workflow aborted.`,
-        output: { classification },
-      };
-    }
+    const handlers = new Map<string, StepHandler>([
 
-    // Step 2 — extract
-    const invoice = await this.ingestion.extractDocumentData(
-      { content: file_content, mimeType: input.input.file_type },
-      ctx,
-    );
+      // ── Step: classify ────────────────────────────────────────────────────
+      ['classify', async (_step: string, data: Record<string, unknown>, c: ExecutionContext) => {
+        const classification = await this.ingestion.classifyDocument(
+          { filename: file_name, content: file_content },
+          c,
+        );
+        if (classification.docType !== 'invoice') {
+          // Signal downstream steps that we aborted early
+          throw new Error(
+            `Document classified as "${classification.docType}" (confidence: ${classification.confidence}). ` +
+            'Only invoice documents are processed.',
+          );
+        }
+        return { classification };
+      }],
 
-    // Step 3 — validate PO
-    const masterDataResult = await this.validateAndGetPO(invoice.poNumber, workflowId);
-    if (!masterDataResult.exists || !masterDataResult.poRecord) {
-      await this.flagException(
-        { workflowId, reason: 'PO not found in master data', data: { poNumber: invoice.poNumber } },
-        ctx,
-      );
-      await this.routeTask(
-        { task: `Missing PO ${invoice.poNumber}`, stakeholder: 'procurement_team', priority: 'high' },
-        ctx,
-      );
-      return {
-        status: 'exception',
-        summary: `PO ${invoice.poNumber} not found in master data. Routed to procurement_team.`,
-        output: { invoice, masterDataResult },
-      };
-    }
+      // ── Step: extract ─────────────────────────────────────────────────────
+      ['extract', async (_step: string, data: Record<string, unknown>, c: ExecutionContext) => {
+        const invoice = await this.ingestion.extractDocumentData(
+          { content: file_content, mimeType: file_type },
+          c,
+        );
+        return { invoice };
+      }],
 
-    // Step 4 — match
-    const validationResult = await this.matchInvoiceToPO(
-      { invoice, po: masterDataResult.poRecord },
-      ctx,
-    );
+      // ── Step: validate_po ─────────────────────────────────────────────────
+      ['validate_po', async (_step: string, data: Record<string, unknown>, c: ExecutionContext) => {
+        const invoice = data['invoice'] as ExtractedInvoice;
+        if (!invoice?.poNumber) {
+          throw new Error('No poNumber found in extracted invoice data.');
+        }
 
-    // Step 5 — handle mismatch
-    if (validationResult.status === 'mismatch') {
-      await this.flagException(
-        { workflowId, reason: 'Invoice/PO mismatch', data: validationResult },
-        ctx,
-      );
-      await this.routeTask(
-        { task: `Invoice mismatch on ${invoice.invoiceNumber}`, stakeholder: 'finance_team', priority: 'high' },
-        ctx,
-      );
-      return {
-        status: 'Flagged',
-        summary: `Mismatch detected. Discrepancies: ${validationResult.discrepancies.join('; ')}`,
-        output: { invoice, po: masterDataResult.poRecord, validationResult },
-      };
-    }
+        const result = await this.masterDataTools.validateAgainstMasterData(
+          { sku: invoice.lineItems[0]?.sku ?? '', poNumber: invoice.poNumber },
+          c,
+        );
+
+        if (!result.exists || !result.poRecord) {
+          // Flag missing PO — still want to run hs_code step, so we inject a sentinel
+          this.exceptions.flag(
+            data['__workflowRunId'] as string ?? 'unknown',
+            `PO ${invoice.poNumber} not found in master data`,
+            { poNumber: invoice.poNumber },
+          );
+          console.error(
+            `[ROUTE_TASK → procurement_team] Missing PO ${invoice.poNumber}`,
+          );
+          return { __po_missing: true, poNumber: invoice.poNumber, masterDataResult: result };
+        }
+
+        return { masterDataResult: result, po: result.poRecord };
+      }],
+
+      // ── Step: hs_code ─────────────────────────────────────────────────────
+      ['hs_code', async (_step: string, data: Record<string, unknown>, c: ExecutionContext) => {
+        const invoice = data['invoice'] as ExtractedInvoice | undefined;
+        const description = invoice?.lineItems[0]?.description ?? '';
+        if (!description) return { hsCodeResult: null };
+
+        const hsCodeResult = await this.masterDataTools.recommendHsCode(
+          { productDescription: description },
+          c,
+        );
+        return { hsCodeResult };
+      }],
+
+      // ── Step: match ───────────────────────────────────────────────────────
+      ['match', async (_step: string, data: Record<string, unknown>, c: ExecutionContext) => {
+        if (data['__po_missing']) {
+          // Can't match without a PO — skip gracefully
+          return { validationResult: { status: 'exception', discrepancies: ['PO not found'] } };
+        }
+
+        const invoice = data['invoice'] as ExtractedInvoice;
+        const po      = data['po'] as PurchaseOrder;
+
+        const validationResult = await this.matchInvoiceToPO({ invoice, po }, c);
+
+        if (validationResult.status === 'mismatch') {
+          this.exceptions.flag(
+            data['__workflowRunId'] as string ?? 'unknown',
+            'Invoice/PO mismatch detected',
+            validationResult,
+          );
+          console.error(
+            `[ROUTE_TASK → finance_team] Mismatch on invoice ${invoice.invoiceNumber}`,
+          );
+        }
+
+        return { validationResult };
+      }],
+    ]);
+
+    // ── Run the engine ────────────────────────────────────────────────────────
+    const result = await this.engine.run('invoice_processing', {}, handlers, ctx);
+
+    // Inject workflowRunId into data so step handlers can reference it
+    result.data['__workflowRunId'] = result.workflowId;
+
+    const finalStatus  = resolveStatus(result.status, result.data);
+    const finalSummary = buildSummary(result.status, result.data, result.exitStep, result.exitReason);
 
     return {
-      status: 'Auto-approved',
-      summary: `Invoice ${invoice.invoiceNumber} matched PO ${invoice.poNumber} successfully.`,
-      output: { invoice, po: masterDataResult.poRecord, validationResult },
+      workflowRunId: result.workflowId,
+      status:        finalStatus,
+      summary:       finalSummary,
+      stepResults:   result.stepResults,
+      output: {
+        invoice:          result.data['invoice'],
+        po:               result.data['po'],
+        validationResult: result.data['validationResult'],
+        hsCodeResult:     result.data['hsCodeResult'],
+        classification:   result.data['classification'],
+      },
     };
   }
 
-  // ── internal helper ──────────────────────────────────────────────────────
+  // ══════════════════════════════════════════════════════════════════════════
+  // get_workflow_status
+  // ══════════════════════════════════════════════════════════════════════════
 
-  private async validateAndGetPO(poNumber: string, _workflowId: string) {
-    const po = await this.masterData.findPO(poNumber);
-    return { exists: po !== null, poRecord: po };
+  @Tool({
+    name: 'get_workflow_status',
+    description:
+      'Retrieve the current status, step results, and output of a previously executed workflow run. ' +
+      'Pass the workflowRunId returned by execute_workflow.',
+    inputSchema: z.object({
+      workflowRunId: z.string().describe('The workflowRunId returned by execute_workflow'),
+    }),
+    outputSchema: z.object({
+      found:        z.boolean(),
+      run:          z.any().optional(),
+    }),
+  })
+  async getWorkflowStatus(input: { workflowRunId: string }, _ctx: ExecutionContext) {
+    const run = this.store.get(input.workflowRunId);
+    return { found: !!run, run: run ?? undefined };
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // list_workflow_runs
+  // ══════════════════════════════════════════════════════════════════════════
+
+  @Tool({
+    name: 'list_workflow_runs',
+    description: 'List all workflow runs executed in the current server session (most recent first).',
+    inputSchema: z.object({}),
+    outputSchema: z.object({
+      runs: z.array(z.any()),
+      total: z.number(),
+    }),
+  })
+  async listWorkflowRuns(_input: Record<string, never>, _ctx: ExecutionContext) {
+    const runs = this.store.listAll();
+    return { runs, total: runs.length };
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // match_invoice_to_po  (standalone — usable without full workflow)
+  // ══════════════════════════════════════════════════════════════════════════
+
+  @Tool({
+    name: 'match_invoice_to_po',
+    description:
+      'Compare an extracted invoice against a purchase order. ' +
+      'Returns match/mismatch/exception status with discrepancy details. ' +
+      'Qty or price difference >1% is treated as a mismatch.',
+    inputSchema: z.object({
+      invoice: ExtractedInvoiceSchema.describe('The extracted invoice data'),
+      po:      PurchaseOrderSchema.describe('The purchase order to match against'),
+    }),
+    outputSchema: ValidationResultSchema,
+  })
+  async matchInvoiceToPO(
+    input: { invoice: ExtractedInvoice; po: PurchaseOrder },
+    _ctx?: ExecutionContext,
+  ): Promise<ValidationResult> {
+    return this.validation.matchInvoiceToPO(input.invoice, input.po);
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // flag_exception  (standalone — usable without full workflow)
+  // ══════════════════════════════════════════════════════════════════════════
+
+  @Tool({
+    name: 'flag_exception',
+    description: 'Log a workflow exception to the local exceptions store.',
+    inputSchema: z.object({
+      workflowId: z.string().describe('Workflow run identifier'),
+      reason:     z.string().describe('Human-readable reason for the exception'),
+      data:       z.any().describe('Arbitrary payload'),
+    }),
+    outputSchema: z.object({
+      exceptionId: z.string(),
+      status:      z.literal('flagged'),
+    }),
+  })
+  async flagException(
+    input: { workflowId: string; reason: string; data: unknown },
+    _ctx: ExecutionContext,
+  ) {
+    const record = this.exceptions.flag(input.workflowId, input.reason, input.data);
+    return { exceptionId: record.exceptionId, status: 'flagged' as const };
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // route_task  (stubbed — Phase 2 will add Slack/email)
+  // ══════════════════════════════════════════════════════════════════════════
+
+  @Tool({
+    name: 'route_task',
+    description:
+      'Route a task to a stakeholder. STUBBED — logs to console. Real Slack/email is Phase 2.',
+    inputSchema: z.object({
+      task:        z.string().describe('Task description'),
+      stakeholder: z.string().describe('Target stakeholder (e.g. finance_team)'),
+      priority:    z.enum(['low', 'medium', 'high']).default('medium'),
+    }),
+    outputSchema: z.object({
+      routed:  z.boolean(),
+      message: z.string(),
+    }),
+  })
+  async routeTask(
+    input: { task: string; stakeholder: string; priority: string },
+    _ctx: ExecutionContext,
+  ) {
+    console.error(
+      `[ROUTE_TASK] → ${input.stakeholder} | priority=${input.priority} | task="${input.task}"`,
+    );
+    return {
+      routed:  true,
+      message: `Task routed to ${input.stakeholder} (stub — no real notification sent)`,
+    };
   }
 }

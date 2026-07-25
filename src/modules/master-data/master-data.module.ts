@@ -5,6 +5,6 @@ import { MasterDataTools } from './master-data.tools.js';
 @Module({
   name: 'master-data',
   providers: [MasterDataService, MasterDataTools],
-  exports: [MasterDataService],
+  exports: [MasterDataService, MasterDataTools],
 })
 export class MasterDataModule {}
