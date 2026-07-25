@@ -14,6 +14,7 @@ import { InvoiceRepository } from './invoice.repository.js';
 import { MasterDataService } from '../master-data/master-data.service.js';
 import { MasterDataTools } from '../master-data/master-data.tools.js';
 import { IngestionTools } from '../ingestion/ingestion.tools.js';
+import { ComplianceTools } from '../compliance/compliance.tools.js';
 import { AuditLogService } from '../../shared/audit-log.service.js';
 import { ApInvoiceService } from '../ap-invoice/ap-invoice.service.js';
 import {
@@ -88,6 +89,7 @@ export class OrchestratorTools {
     private readonly masterData:      MasterDataService,
     private readonly masterDataTools: MasterDataTools,
     private readonly ingestion:       IngestionTools,
+    private readonly complianceTools: ComplianceTools,
     private readonly auditLog:        AuditLogService,
     private readonly apInvoice:       ApInvoiceService,
   ) {}
@@ -156,6 +158,24 @@ export class OrchestratorTools {
           c,
         );
         return { invoice };
+      }],
+
+      // ── Step: compliance_check ─────────────────────────────────────────────
+      ['compliance_check', async (_step: string, data: Record<string, unknown>, c: ExecutionContext) => {
+        const invoice = data['invoice'] as ExtractedInvoice;
+        if (!invoice?.vendor) return {};
+
+        const result = await this.complianceTools.screenVendor({ vendorName: invoice.vendor }, c);
+        
+        if (result.status === 'BLOCKED') {
+          const runId = data['__workflowRunId'] as string ?? 'unknown';
+          const reason = `Vendor "${invoice.vendor}" is on the denied parties list (${result.matches[0]?.reason})`;
+          await this.exceptions.flag(runId, reason, result);
+          console.error(`[ROUTE_TASK → legal_team] Compliance violation: ${reason}`);
+          
+          throw new Error(reason); // Halts workflow due to "flag_and_abort" in SOP
+        }
+        return { complianceResult: result };
       }],
 
       // ── Step: validate_po ─────────────────────────────────────────────────
