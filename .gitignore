@@ -56,5 +56,11 @@ uploads/
 *.key
 tokens.json
 
+# Python virtual environments & cache
+.venv/
+venv/
+__pycache__/
+
 # Generated local SQLite database (use scripts/generate-local-db.ts to recreate)
 data/*.db
+

@@ -17,15 +17,16 @@
  */
 
 import { DatabaseSync } from 'node:sqlite';
-import { mkdirSync, existsSync } from 'node:fs';
+import { mkdirSync, existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR  = join(__dirname, '..', 'data');
 const DB_PATH   = join(DATA_DIR, 'ale-scm.db');
+const MASTER_JSON_PATH = join(DATA_DIR, 'master-data.json');
 
-const SEED_POS = [
+const FALLBACK_SEED_POS = [
   { poNumber: 'PO-001', vendor: 'Acme Corp',          sku: 'LAP-001', orderedQty: 10,  unitPrice: 999.00,  hsCode: '8471.30' },
   { poNumber: 'PO-002', vendor: 'Tech Supplies Ltd',  sku: 'BAT-002', orderedQty: 50,  unitPrice: 49.99,   hsCode: '8507.60' },
   { poNumber: 'PO-003', vendor: 'Global Parts Co',    sku: 'MON-003', orderedQty: 5,   unitPrice: 450.00,  hsCode: '8528.52' },
@@ -37,6 +38,22 @@ const SEED_POS = [
   { poNumber: 'PO-009', vendor: 'Acme Corp',          sku: 'MSE-009', orderedQty: 25,  unitPrice: 35.00,   hsCode: '8471.60' },
   { poNumber: 'PO-010', vendor: 'Office Depot',       sku: 'DSK-010', orderedQty: 8,   unitPrice: 299.99,  hsCode: '9403.10' },
 ];
+
+function getSeedPOs() {
+  if (existsSync(MASTER_JSON_PATH)) {
+    try {
+      const content = readFileSync(MASTER_JSON_PATH, 'utf-8');
+      const parsed = JSON.parse(content);
+      if (Array.isArray(parsed.purchaseOrders) && parsed.purchaseOrders.length > 0) {
+        return parsed.purchaseOrders;
+      }
+    } catch (err) {
+      console.warn('⚠️ Could not parse master-data.json, using fallback seed POs.');
+    }
+  }
+  return FALLBACK_SEED_POS;
+}
+
 
 function main() {
   if (!existsSync(DATA_DIR)) {
@@ -63,10 +80,12 @@ function main() {
      VALUES (?, ?, ?, ?, ?, ?)`,
   );
 
-  for (const po of SEED_POS) {
+  const seedPOs = getSeedPOs();
+  console.log(`🌱  Seeding ${seedPOs.length} purchase orders into SQLite DB…`);
+  for (const po of seedPOs) {
     stmt.run(po.poNumber, po.vendor, po.sku, po.orderedQty, po.unitPrice, po.hsCode);
-    console.log(`   ✓  ${po.poNumber}  ${po.vendor}  ${po.sku}`);
   }
+
 
   const count = (db.prepare('SELECT COUNT(*) AS c FROM purchase_orders').get() as { c: number }).c;
   db.close();
