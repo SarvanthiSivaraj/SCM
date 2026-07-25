@@ -10,9 +10,11 @@ import { ExceptionService } from './exception.service.js';
 import { WorkflowEngine, type StepHandler } from './workflow.engine.js';
 import { WorkflowContextStore } from './workflow-context.store.js';
 import { SopLoaderService } from './sop-loader.service.js';
+import { InvoiceRepository } from './invoice.repository.js';
 import { MasterDataService } from '../master-data/master-data.service.js';
 import { MasterDataTools } from '../master-data/master-data.tools.js';
 import { IngestionTools } from '../ingestion/ingestion.tools.js';
+import { AuditLogService } from '../../shared/audit-log.service.js';
 import {
   ExtractedInvoiceSchema,
   PurchaseOrderSchema,
@@ -69,14 +71,16 @@ function resolveStatus(
 @Controller('orchestrator')
 export class OrchestratorTools {
   constructor(
-    private readonly validation:   ValidationService,
-    private readonly exceptions:   ExceptionService,
-    private readonly engine:       WorkflowEngine,
-    private readonly store:        WorkflowContextStore,
-    private readonly sop:          SopLoaderService,
-    private readonly masterData:   MasterDataService,
+    private readonly validation:      ValidationService,
+    private readonly exceptions:      ExceptionService,
+    private readonly engine:          WorkflowEngine,
+    private readonly store:           WorkflowContextStore,
+    private readonly sop:             SopLoaderService,
+    private readonly invoiceRepo:     InvoiceRepository,
+    private readonly masterData:      MasterDataService,
     private readonly masterDataTools: MasterDataTools,
-    private readonly ingestion:    IngestionTools,
+    private readonly ingestion:       IngestionTools,
+    private readonly auditLog:        AuditLogService,
   ) {}
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -113,6 +117,7 @@ export class OrchestratorTools {
     },
     ctx: ExecutionContext,
   ) {
+    const t0 = Date.now();
     const { file_name, file_content, file_type } = input.input;
 
     // ── Register step handlers (name matches sop_rules.yaml step.name) ────────
@@ -158,7 +163,7 @@ export class OrchestratorTools {
 
         if (!result.exists || !result.poRecord) {
           // Flag missing PO — still want to run hs_code step, so we inject a sentinel
-          this.exceptions.flag(
+          await this.exceptions.flag(
             data['__workflowRunId'] as string ?? 'unknown',
             `PO ${invoice.poNumber} not found in master data`,
             { poNumber: invoice.poNumber },
@@ -198,7 +203,7 @@ export class OrchestratorTools {
         const validationResult = await this.matchInvoiceToPO({ invoice, po }, c);
 
         if (validationResult.status === 'mismatch') {
-          this.exceptions.flag(
+          await this.exceptions.flag(
             data['__workflowRunId'] as string ?? 'unknown',
             'Invoice/PO mismatch detected',
             validationResult,
@@ -220,6 +225,27 @@ export class OrchestratorTools {
 
     const finalStatus  = resolveStatus(result.status, result.data);
     const finalSummary = buildSummary(result.status, result.data, result.exitStep, result.exitReason);
+
+    // ── Persist invoice to SQLite for analytics ────────────────────────────
+    const invoice = result.data['invoice'] as ExtractedInvoice | undefined;
+    if (invoice) {
+      try {
+        await this.invoiceRepo.save(invoice, finalStatus, result.workflowId);
+      } catch (err) {
+        console.error('[OrchestratorTools] Failed to persist invoice:', err);
+      }
+    }
+
+    // ── Write audit log entry ─────────────────────────────────────────────
+    await this.auditLog.log({
+      workflowId:  result.workflowId,
+      toolName:    'execute_workflow',
+      input:       { file_name, file_type },
+      output:      { status: finalStatus, stepCount: result.stepResults.length },
+      status:      result.status === 'completed' ? 'success' : 'error',
+      errorMsg:    result.exitReason,
+      durationMs:  Date.now() - t0,
+    });
 
     return {
       workflowRunId: result.workflowId,
@@ -320,7 +346,7 @@ export class OrchestratorTools {
     input: { workflowId: string; reason: string; data: unknown },
     _ctx: ExecutionContext,
   ) {
-    const record = this.exceptions.flag(input.workflowId, input.reason, input.data);
+    const record = await this.exceptions.flag(input.workflowId, input.reason, input.data);
     return { exceptionId: record.exceptionId, status: 'flagged' as const };
   }
 
