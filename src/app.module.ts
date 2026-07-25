@@ -5,6 +5,7 @@ import { MasterDataModule } from './modules/master-data/master-data.module.js';
 import { OrchestratorModule } from './modules/orchestrator/orchestrator.module.js';
 import { AnalyticsModule } from './modules/analytics/analytics.module.js';
 import { ApInvoiceModule } from './modules/ap-invoice/ap-invoice.module.js';
+import { ComplianceModule } from './modules/compliance/compliance.module.js';
 
 /**
  * ALE SCM — MCP Server Root Module
@@ -42,6 +43,7 @@ import { ApInvoiceModule } from './modules/ap-invoice/ap-invoice.module.js';
     MasterDataModule,
     OrchestratorModule,
     ApInvoiceModule,
+    ComplianceModule,
   ],
   providers: [SystemHealthCheck],
 })
