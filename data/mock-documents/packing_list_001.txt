@@ -1,0 +1,9 @@
+PACKING LIST
+Shipment ID: SH-10029
+Date: 2026-07-25
+From: Acme Corp
+To: ALE Warehouse
+Items:
+SKU: LAP-001
+Quantity: 10
+Gross Weight: 25 kg

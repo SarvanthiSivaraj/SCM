@@ -1,0 +1,13 @@
+INVOICE
+Invoice Number: INV-2026-001
+PO Number: PO-001
+Vendor: Acme Corp
+Invoice Date: 2026-07-25
+Total Amount: 9990.00
+
+Line Items:
+SKU: LAP-001
+Description: Premium Laptops
+Quantity: 10
+Unit Price: 999.00
+Total: 9990.00

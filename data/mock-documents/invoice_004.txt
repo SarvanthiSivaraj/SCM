@@ -1,0 +1,13 @@
+INVOICE
+Invoice Number: INV-2026-004
+PO Number: PO-004
+Vendor: ACME Electronics
+Invoice Date: 2026-07-25
+Total Amount: 12000.00
+
+Line Items:
+SKU: LAPTOP-PRO-15
+Description: Premium Laptops Pro 15
+Quantity: 10
+Unit Price: 1200.00
+Total: 12000.00

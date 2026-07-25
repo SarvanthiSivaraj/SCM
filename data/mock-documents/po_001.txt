@@ -1,0 +1,8 @@
+PURCHASE ORDER
+PO Number: PO-2026-099
+Vendor: Acme Corp
+Date: 2026-07-25
+SKU: LAP-001
+Ordered Qty: 10
+Unit Price: 999.00
+Total Price: 9990.00

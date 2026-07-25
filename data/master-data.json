@@ -1,44 +1,13 @@
 {
-  "purchaseOrders": [
+  "poNumber": "PO-004",
+  "vendor": "ACME Electronics",
+  "status": "OPEN",
+  "lineItems": [
     {
-      "poNumber": "PO-001",
-      "vendor": "Acme Corp",
-      "sku": "LAP-001",
-      "orderedQty": 10,
-      "unitPrice": 999,
-      "hsCode": "8471.30"
-    },
-    {
-      "poNumber": "PO-002",
-      "vendor": "Tech Supplies Ltd",
-      "sku": "BAT-002",
-      "orderedQty": 50,
-      "unitPrice": 49.99,
-      "hsCode": "8507.60"
-    },
-    {
-      "poNumber": "PO-003",
-      "vendor": "Global Parts Co",
-      "sku": "MON-003",
-      "orderedQty": 5,
-      "unitPrice": 450,
-      "hsCode": "8528.52"
-    },
-    {
-      "poNumber": "PO-004",
-      "vendor": "Acme Corp",
-      "sku": "LAP-001",
-      "orderedQty": 10,
-      "unitPrice": 10,
-      "hsCode": "8471.30"
-    },
-    {
-      "poNumber": "PO-005",
-      "vendor": "Office Depot",
-      "sku": "CHR-005",
-      "orderedQty": 20,
-      "unitPrice": 199.99,
-      "hsCode": "9401.30"
+      "sku": "LAPTOP-PRO-15",
+      "quantity": 10,
+      "unitPrice": 1000.00,
+      "total": 10000.00
     }
   ]
 }

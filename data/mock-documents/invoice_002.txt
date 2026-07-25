@@ -1,0 +1,13 @@
+INVOICE
+Invoice Number: INV-2026-002
+PO Number: PO-002
+Vendor: Tech Supplies Ltd
+Invoice Date: 2026-07-25
+Total Amount: 2499.50
+
+Line Items:
+SKU: BAT-002
+Description: Lithium Batteries
+Quantity: 50
+Unit Price: 49.99
+Total: 2499.50
