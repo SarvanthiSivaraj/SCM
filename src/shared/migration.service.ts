@@ -253,6 +253,8 @@ const MIGRATIONS: Migration[] = [
         delivered_at TEXT
       );
 
+      ALTER TABLE alerts ADD COLUMN queue_id INTEGER REFERENCES alerts_queue(id);
+
       CREATE INDEX IF NOT EXISTS idx_alerts_queue_id   ON alerts(queue_id);
       CREATE INDEX IF NOT EXISTS idx_alerts_created_at ON alerts(created_at)
     `,
@@ -300,7 +302,19 @@ export class MigrationService implements OnModuleInit {
         .filter((s) => s.length > 0);
 
       for (const stmt of statements) {
-        await this.database.sql(stmt);
+        try {
+          await this.database.sql(stmt);
+        } catch (err: unknown) {
+          const msg = String((err as { message?: string })?.message || err);
+          if (
+            msg.toLowerCase().includes('duplicate column') ||
+            msg.toLowerCase().includes('already exists')
+          ) {
+            console.error(`[MigrationService] Ignored migration notice: ${msg}`);
+          } else {
+            throw err;
+          }
+        }
       }
 
       await this.database.sql(
