@@ -6,6 +6,7 @@ import { OrchestratorModule } from './modules/orchestrator/orchestrator.module.j
 import { AnalyticsModule } from './modules/analytics/analytics.module.js';
 import { ApInvoiceModule } from './modules/ap-invoice/ap-invoice.module.js';
 import { ComplianceModule } from './modules/compliance/compliance.module.js';
+import { CommunicationModule } from './modules/communication/communication.module.js';
 
 /**
  * ALE SCM — MCP Server Root Module
@@ -17,6 +18,7 @@ import { ComplianceModule } from './modules/compliance/compliance.module.js';
  *  - OrchestratorModule execute_workflow, match_invoice_to_po, exceptions, workflow status
  *  - ApInvoiceModule    AP invoice automation (duplicate detect, 3-way match, FX, approval routing)
  *  - ApiKeyModule       x-api-key guard
+ *  - CommunicationModule  send_alert, ingest_email_inbox, SLA escalation, daily digest, route_task upgrade
  */
 @McpApp({
   module: AppModule,
@@ -38,9 +40,10 @@ import { ComplianceModule } from './modules/compliance/compliance.module.js';
       headerName: 'x-api-key',
       hashed: false,
     }) as any,
-    AnalyticsModule,    // boots first: DB connection + all migrations
+    AnalyticsModule,      // boots first: DB connection + all migrations
     IngestionModule,
     MasterDataModule,
+    CommunicationModule,  // queue-backed alerting + worker; before Orchestrator
     OrchestratorModule,
     ApInvoiceModule,
     ComplianceModule,
