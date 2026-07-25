@@ -6,6 +6,7 @@ import { ValidationService } from './validation.service.js';
 import { ExceptionService } from './exception.service.js';
 
 @Module({
+  name: 'orchestrator',
   imports: [MasterDataModule, IngestionModule],
   providers: [ValidationService, ExceptionService, OrchestratorTools],
   exports: [],
