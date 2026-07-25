@@ -210,6 +210,55 @@ const MIGRATIONS: Migration[] = [
       );
     `,
   },
+
+  // ── v8: Communication & Alerting — alerts_queue (durable send queue) ─────
+  {
+    version: 8,
+    description: 'Add alerts_queue table for queue-backed email delivery with retry/dead-letter',
+    up: `
+      CREATE TABLE IF NOT EXISTS alerts_queue (
+        id               INTEGER PRIMARY KEY AUTOINCREMENT,
+        recipient        TEXT    NOT NULL,
+        template         TEXT    NOT NULL,
+        subject          TEXT,
+        payload          TEXT    DEFAULT '{}',
+        status           TEXT    DEFAULT 'queued'
+                           CHECK(status IN ('queued','sending','sent','failed','dead_letter')),
+        attempt_count    INTEGER DEFAULT 0,
+        last_error       TEXT,
+        created_at       TEXT    DEFAULT (datetime('now')),
+        sent_at          TEXT,
+        next_attempt_at  TEXT
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_alerts_queue_status ON alerts_queue(status);
+      CREATE INDEX IF NOT EXISTS idx_alerts_queue_next   ON alerts_queue(next_attempt_at);
+      CREATE INDEX IF NOT EXISTS idx_alerts_queue_created ON alerts_queue(created_at)
+    `,
+  },
+
+  // ── v9: Communication & Alerting — alerts delivery log (immutable audit) ─
+  {
+    version: 9,
+    description: 'Add immutable alerts delivery log table',
+    up: `
+      CREATE TABLE IF NOT EXISTS alerts (
+        id           INTEGER PRIMARY KEY AUTOINCREMENT,
+        queue_id     INTEGER REFERENCES alerts_queue(id),
+        recipient    TEXT,
+        template     TEXT,
+        status       TEXT,
+        payload      TEXT,
+        created_at   TEXT DEFAULT (datetime('now')),
+        delivered_at TEXT
+      );
+
+      ALTER TABLE alerts ADD COLUMN queue_id INTEGER REFERENCES alerts_queue(id);
+
+      CREATE INDEX IF NOT EXISTS idx_alerts_queue_id   ON alerts(queue_id);
+      CREATE INDEX IF NOT EXISTS idx_alerts_created_at ON alerts(created_at)
+    `,
+  },
 ];
 
 // ─── Service ─────────────────────────────────────────────────────────────────
@@ -253,7 +302,19 @@ export class MigrationService implements OnModuleInit {
         .filter((s) => s.length > 0);
 
       for (const stmt of statements) {
-        await this.database.sql(stmt);
+        try {
+          await this.database.sql(stmt);
+        } catch (err: unknown) {
+          const msg = String((err as { message?: string })?.message || err);
+          if (
+            msg.toLowerCase().includes('duplicate column') ||
+            msg.toLowerCase().includes('already exists')
+          ) {
+            console.error(`[MigrationService] Ignored migration notice: ${msg}`);
+          } else {
+            throw err;
+          }
+        }
       }
 
       await this.database.sql(

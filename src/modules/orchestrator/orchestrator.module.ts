@@ -4,6 +4,7 @@ import { MasterDataModule } from '../master-data/master-data.module.js';
 import { IngestionModule } from '../ingestion/ingestion.module.js';
 import { ApInvoiceModule } from '../ap-invoice/ap-invoice.module.js';
 import { ComplianceModule } from '../compliance/compliance.module.js';
+import { CommunicationModule } from '../communication/communication.module.js';
 import { OrchestratorTools } from './orchestrator.tools.js';
 import { ValidationService } from './validation.service.js';
 import { ExceptionService } from './exception.service.js';
@@ -14,7 +15,7 @@ import { InvoiceRepository } from './invoice.repository.js';
 
 @Module({
   name: 'orchestrator',
-  imports: [AnalyticsModule, MasterDataModule, IngestionModule, ApInvoiceModule, ComplianceModule],
+  imports: [AnalyticsModule, MasterDataModule, IngestionModule, ApInvoiceModule, ComplianceModule, CommunicationModule],
   providers: [
     SopLoaderService,       // reads sop_rules.yaml on boot
     WorkflowContextStore,   // in-memory run tracker
