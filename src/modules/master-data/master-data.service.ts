@@ -1,8 +1,8 @@
-import { Injectable, OnModuleInit, OnModuleDestroy } from '@nitrostack/core';
-import { Database } from '@sqlitecloud/drivers';
+import { Injectable, OnModuleInit } from '@nitrostack/core';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import type { DatabaseService } from '../../shared/database.service.js';
 import type { PurchaseOrder } from '../../shared/schemas.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -31,25 +31,12 @@ function getSeedPOs(): PurchaseOrder[] {
       if (Array.isArray(parsed.purchaseOrders) && parsed.purchaseOrders.length > 0) {
         return parsed.purchaseOrders as PurchaseOrder[];
       }
-    } catch (err) {
+    } catch {
       console.warn('[MasterDataService] Could not parse master-data.json, using fallback seed POs.');
     }
   }
   return FALLBACK_SEED_POS;
 }
-
-// ─── DDL ──────────────────────────────────────────────────────────────────────
-
-const CREATE_TABLE_SQL = `
-  CREATE TABLE IF NOT EXISTS purchase_orders (
-    po_number   TEXT PRIMARY KEY,
-    vendor      TEXT NOT NULL,
-    sku         TEXT NOT NULL,
-    ordered_qty INTEGER NOT NULL,
-    unit_price  REAL NOT NULL,
-    hs_code     TEXT NOT NULL
-  )
-`;
 
 // ─── Row → PurchaseOrder mapper ───────────────────────────────────────────────
 
@@ -67,35 +54,19 @@ function rowToPO(row: Record<string, unknown>): PurchaseOrder {
 // ─── Service ─────────────────────────────────────────────────────────────────
 
 @Injectable()
-export class MasterDataService implements OnModuleInit, OnModuleDestroy {
-  private db!: Database;
+export class MasterDataService implements OnModuleInit {
+  constructor(private readonly database: DatabaseService) {}
 
   async onModuleInit(): Promise<void> {
-    const url = process.env['SQLITECLOUD_URL'];
-    if (!url) {
-      throw new Error(
-        '[MasterDataService] SQLITECLOUD_URL is not set. ' +
-        'Add it to your .env file. ' +
-        'Format: sqlitecloud://<user>:<apikey>@<host>.sqlite.cloud:8860/<db>.sqlite',
-      );
-    }
-
-    this.db = new Database(url);
-
-    // Create table if it doesn't exist yet
-    await this.db.sql(CREATE_TABLE_SQL);
-
-    // Seed only when the table is empty (idempotent)
-    const rows = (await this.db.sql('SELECT COUNT(*) AS count FROM purchase_orders')) as { count: number }[];
-    if (rows[0]?.count === 0) {
+    // purchase_orders table is created by MigrationService (v1).
+    // We only seed here if the table is empty (idempotent guard).
+    const rows = (await this.database.sql(
+      'SELECT COUNT(*) AS count FROM purchase_orders',
+    )) as { count: number }[];
+    if ((rows[0]?.count ?? 0) === 0) {
       await this.seedDatabase();
     }
-
-    console.error('[MasterDataService] Connected to SQLite Cloud ✓');
-  }
-
-  async onModuleDestroy(): Promise<void> {
-    await this.db?.close();
+    console.error('[MasterDataService] Ready ✓');
   }
 
   // ─── Seed ──────────────────────────────────────────────────────────────────
@@ -103,7 +74,7 @@ export class MasterDataService implements OnModuleInit, OnModuleDestroy {
   private async seedDatabase(): Promise<void> {
     const seedPOs = getSeedPOs();
     for (const po of seedPOs) {
-      await this.db.sql(
+      await this.database.sql(
         `INSERT OR IGNORE INTO purchase_orders
            (po_number, vendor, sku, ordered_qty, unit_price, hs_code)
          VALUES (?, ?, ?, ?, ?, ?)`,
@@ -113,11 +84,10 @@ export class MasterDataService implements OnModuleInit, OnModuleDestroy {
     console.error(`[MasterDataService] Seeded ${seedPOs.length} purchase orders ✓`);
   }
 
-
   // ─── Query API ─────────────────────────────────────────────────────────────
 
   async findPO(poNumber: string): Promise<PurchaseOrder | null> {
-    const rows = (await this.db.sql(
+    const rows = (await this.database.sql(
       'SELECT * FROM purchase_orders WHERE po_number = ?',
       poNumber,
     )) as Record<string, unknown>[];
@@ -125,7 +95,7 @@ export class MasterDataService implements OnModuleInit, OnModuleDestroy {
   }
 
   async findBySku(sku: string): Promise<PurchaseOrder | null> {
-    const rows = (await this.db.sql(
+    const rows = (await this.database.sql(
       'SELECT * FROM purchase_orders WHERE sku = ? LIMIT 1',
       sku,
     )) as Record<string, unknown>[];
@@ -133,7 +103,7 @@ export class MasterDataService implements OnModuleInit, OnModuleDestroy {
   }
 
   async getAllPOs(): Promise<PurchaseOrder[]> {
-    const rows = (await this.db.sql(
+    const rows = (await this.database.sql(
       'SELECT * FROM purchase_orders ORDER BY po_number',
     )) as Record<string, unknown>[];
     return rows.map(rowToPO);

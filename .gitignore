@@ -64,3 +64,4 @@ __pycache__/
 # Generated local SQLite database (use scripts/generate-local-db.ts to recreate)
 data/*.db
 
+.nitrostudio

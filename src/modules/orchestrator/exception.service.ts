@@ -1,46 +1,118 @@
 import { Injectable } from '@nitrostack/core';
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
 import { randomUUID } from 'crypto';
+import type { DatabaseService } from '../../shared/database.service.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const EXCEPTIONS_PATH = join(__dirname, '..', '..', '..', 'data', 'exceptions.json');
+// ─── Row type ─────────────────────────────────────────────────────────────────
 
-interface ExceptionRecord {
-  exceptionId: string;
-  workflowId: string;
-  reason: string;
-  data: unknown;
-  createdAt: string;
-  status: 'flagged';
+export interface ExceptionRecord {
+  exceptionId:   string;
+  workflowId:    string;
+  invoiceNumber: string | null;
+  reason:        string;
+  discrepancies: string[];
+  status:        'flagged' | 'under_review' | 'resolved' | 'dismissed';
+  createdAt:     string;
+  resolvedAt:    string | null;
 }
+
+// ─── Service ─────────────────────────────────────────────────────────────────
 
 @Injectable()
 export class ExceptionService {
-  private load(): ExceptionRecord[] {
-    const dir = dirname(EXCEPTIONS_PATH);
-    if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
-    if (!existsSync(EXCEPTIONS_PATH)) return [];
-    return JSON.parse(readFileSync(EXCEPTIONS_PATH, 'utf-8')) as ExceptionRecord[];
-  }
+  constructor(private readonly database: DatabaseService) {}
 
-  private save(records: ExceptionRecord[]) {
-    writeFileSync(EXCEPTIONS_PATH, JSON.stringify(records, null, 2), 'utf-8');
-  }
+  /**
+   * Log a new exception to the SQLite `exceptions` table.
+   * Returns the created record (including the generated exceptionId).
+   */
+  async flag(
+    workflowId:    string,
+    reason:        string,
+    data:          unknown,
+    invoiceNumber?: string,
+  ): Promise<ExceptionRecord> {
+    const exceptionId   = randomUUID();
+    const discrepancies = this.extractDiscrepancies(data);
+    const now           = new Date().toISOString();
 
-  flag(workflowId: string, reason: string, data: unknown): ExceptionRecord {
-    const record: ExceptionRecord = {
-      exceptionId: randomUUID(),
+    await this.database.sql(
+      `INSERT INTO exceptions
+         (workflow_id, invoice_number, reason, discrepancies, status, created_at)
+       VALUES (?, ?, ?, ?, 'flagged', ?)`,
       workflowId,
+      invoiceNumber ?? null,
       reason,
-      data,
-      createdAt: new Date().toISOString(),
-      status: 'flagged',
+      JSON.stringify(discrepancies),
+      now,
+    );
+
+    return {
+      exceptionId,
+      workflowId,
+      invoiceNumber:  invoiceNumber ?? null,
+      reason,
+      discrepancies,
+      status:         'flagged',
+      createdAt:      now,
+      resolvedAt:     null,
     };
-    const all = this.load();
-    all.push(record);
-    this.save(all);
-    return record;
+  }
+
+  /** Update exception status (for resolution workflows). */
+  async updateStatus(
+    workflowId: string,
+    newStatus:  'under_review' | 'resolved' | 'dismissed',
+  ): Promise<void> {
+    const resolvedAt = newStatus === 'resolved' ? new Date().toISOString() : null;
+    await this.database.sql(
+      `UPDATE exceptions
+       SET status = ?, resolved_at = ?
+       WHERE workflow_id = ? AND status IN ('flagged','under_review')`,
+      newStatus, resolvedAt, workflowId,
+    );
+  }
+
+  /** Get all open exceptions (flagged or under_review). */
+  async getOpen(limit = 50): Promise<ExceptionRecord[]> {
+    const rows = (await this.database.sql(
+      `SELECT * FROM exceptions
+       WHERE status IN ('flagged','under_review')
+       ORDER BY created_at DESC LIMIT ?`,
+      limit,
+    )) as Record<string, unknown>[];
+    return rows.map(this.rowToRecord);
+  }
+
+  /** Get exceptions for a specific workflow run. */
+  async getByWorkflow(workflowId: string): Promise<ExceptionRecord[]> {
+    const rows = (await this.database.sql(
+      `SELECT * FROM exceptions WHERE workflow_id = ? ORDER BY created_at`,
+      workflowId,
+    )) as Record<string, unknown>[];
+    return rows.map(this.rowToRecord);
+  }
+
+  // ─── Helpers ───────────────────────────────────────────────────────────────
+
+  private extractDiscrepancies(data: unknown): string[] {
+    if (!data || typeof data !== 'object') return [];
+    const d = data as Record<string, unknown>;
+    if (Array.isArray(d['discrepancies'])) {
+      return d['discrepancies'].filter((x): x is string => typeof x === 'string');
+    }
+    return [];
+  }
+
+  private rowToRecord(row: Record<string, unknown>): ExceptionRecord {
+    return {
+      exceptionId:   String(row['id'] ?? ''),
+      workflowId:    String(row['workflow_id'] ?? ''),
+      invoiceNumber: row['invoice_number'] as string | null,
+      reason:        String(row['reason'] ?? ''),
+      discrepancies: JSON.parse(String(row['discrepancies'] ?? '[]')) as string[],
+      status:        (row['status'] as ExceptionRecord['status']) ?? 'flagged',
+      createdAt:     String(row['created_at'] ?? ''),
+      resolvedAt:    row['resolved_at'] as string | null,
+    };
   }
 }

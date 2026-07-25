@@ -3,15 +3,17 @@ import { SystemHealthCheck } from './health/system.health.js';
 import { IngestionModule } from './modules/ingestion/ingestion.module.js';
 import { MasterDataModule } from './modules/master-data/master-data.module.js';
 import { OrchestratorModule } from './modules/orchestrator/orchestrator.module.js';
+import { AnalyticsModule } from './modules/analytics/analytics.module.js';
 
 /**
  * ALE SCM — MCP Server Root Module
  *
- * Modules:
- *  - IngestionModule    (Person A) classify, extract
- *  - MasterDataModule   (Person B) PO lookup, HS-code stub
- *  - OrchestratorModule (Person C) workflow, validation, exceptions
- *  - ApiKeyModule       (Person D) x-api-key guard
+ * Boot order (by import sequence):
+ *  - AnalyticsModule    Shared DB + WAL mode + migrations + audit log + analytics tools
+ *  - IngestionModule    classify_document, extract_document_data, ingest_document
+ *  - MasterDataModule   validate_against_master_data, recommend_hs_code
+ *  - OrchestratorModule execute_workflow, match_invoice_to_po, exceptions, workflow status
+ *  - ApiKeyModule       x-api-key guard
  */
 @McpApp({
   module: AppModule,
@@ -33,6 +35,7 @@ import { OrchestratorModule } from './modules/orchestrator/orchestrator.module.j
       headerName: 'x-api-key',
       hashed: false,
     }) as any,
+    AnalyticsModule,    // boots first: DB connection + all migrations
     IngestionModule,
     MasterDataModule,
     OrchestratorModule,
