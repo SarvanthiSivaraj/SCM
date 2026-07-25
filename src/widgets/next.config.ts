@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   transpilePackages: ['nitrostack'],
   
@@ -15,7 +16,7 @@ const nextConfig = {
   // Development optimizations to prevent cache corruption
   ...(process.env.NODE_ENV === 'development' && {
     // Use memory cache instead of filesystem cache in dev to avoid stale chunks
-    webpack: (config, { isServer }) => {
+    webpack: (config: any, { isServer }: any) => {
       // Disable persistent caching in development to prevent chunk reference errors
       if (config.cache && config.cache.type === 'filesystem') {
         config.cache = {
