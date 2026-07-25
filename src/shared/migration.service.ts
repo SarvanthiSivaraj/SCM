@@ -162,6 +162,27 @@ const MIGRATIONS: Migration[] = [
     `,
   },
 
+  // ── v7: Compliance / Denied Parties table ──────────────────────────────────
+  {
+    version: 7,
+    description: 'Add denied_parties table and seed data',
+    up: `
+      CREATE TABLE IF NOT EXISTS denied_parties (
+        id          INTEGER PRIMARY KEY AUTOINCREMENT,
+        entity_name TEXT NOT NULL UNIQUE,
+        country     TEXT,
+        reason      TEXT
+      );
+
+      INSERT OR IGNORE INTO denied_parties (entity_name, country, reason) VALUES
+        ('Global Blacklist Corp', 'NK', 'Sanctions violation'),
+        ('Sanctioned Industries LLC', 'RU', 'Embargoed entity'),
+        ('Denied Vendor Ltd', 'IR', 'Financial sanctions');
+      
+      CREATE INDEX IF NOT EXISTS idx_denied_parties_name ON denied_parties(entity_name);
+    `,
+  },
+
   // ── v6: AP Invoice Automation tables ─────────────────────────────────────
   {
     version: 6,
