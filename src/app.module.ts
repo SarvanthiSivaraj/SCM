@@ -32,7 +32,7 @@ import { OrchestratorModule } from './modules/orchestrator/orchestrator.module.j
       keysEnvPrefix: 'ALE_API_KEY',
       headerName: 'x-api-key',
       hashed: false,
-    }),
+    }) as any,
     IngestionModule,
     MasterDataModule,
     OrchestratorModule,
