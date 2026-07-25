@@ -31,9 +31,14 @@ export class AnalyticsTools {
   @Tool({
     name: 'get_invoice_analytics',
     description:
-      'Retrieve invoice processing analytics: total volume, auto-approved vs flagged counts, ' +
-      'straight-through-processing (STP) rate, average cycle time, and volume breakdown by ' +
-      'date and vendor. Supports date range and vendor filters.',
+      'Retrieve real invoice processing analytics from the SQLite invoices table: ' +
+      'total volume, auto-approved count, flagged count, exception count, ' +
+      'straight-through-processing (STP) rate (%), average cycle time, ' +
+      'and volume breakdown by date and vendor. Supports date range and vendor filters. ' +
+      '\n\nIMPORTANT: This is the ONLY correct tool for retrieving the STP rate. ' +
+      'Do NOT use system health checks, do NOT fabricate percentages. ' +
+      'Always call this tool and read the "stpRate" field from the response. ' +
+      'For today\'s data use filters: { dateFrom: "YYYY-MM-DD", dateTo: "YYYY-MM-DD" }.',
     inputSchema: z.object({
       filters: FiltersSchema.optional().describe('Optional filters to narrow the report'),
     }),

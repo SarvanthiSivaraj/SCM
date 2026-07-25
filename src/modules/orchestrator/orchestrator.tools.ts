@@ -117,9 +117,19 @@ export class OrchestratorTools {
   @Tool({
     name: 'execute_workflow',
     description:
-      'Run the full invoice processing pipeline driven by sop_rules.yaml: ' +
-      'classify → extract → validate PO → recommend HS code → match → AP invoice automation. ' +
-      'Pass a plain-text invoice document.',
+      'Run the full invoice processing SOP pipeline (sop_rules.yaml): ' +
+      'classify → extract → compliance_check → validate_po → hs_code → match → process_ap_invoice. ' +
+      'ALWAYS invoke this tool via a real tool call — never simulate or summarise results without calling it. ' +
+      'Pass the plain-text (or base64) invoice document content. ' +
+      '\n\nPossible status values returned in the output: ' +
+      '"Auto-approved" (PO matched, AP record created), ' +
+      '"Pending-approval" (above auto-approval threshold), ' +
+      '"Duplicate" (invoice already processed), ' +
+      '"Flagged" (price/qty mismatch — routed to finance_team), ' +
+      '"exception" (vendor BLOCKED by compliance OR missing PO — routed to legal_team / procurement_team). ' +
+      '\nThe @Widget("invoice-result") React component handles ALL status variants including BLOCKED — ' +
+      'do not generate alternative or speculative UI for any status. ' +
+      'Output object includes: invoice, po, validationResult, hsCodeResult, complianceResult, apResult.',
     inputSchema: z.object({
       workflowId: z.literal('invoice_processing'),
       input: z.object({

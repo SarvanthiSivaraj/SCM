@@ -141,10 +141,10 @@ export class AlertService implements OnModuleInit {
   async flush(): Promise<{ processed: number; sent: number; failed: number }> {
     const now = new Date().toISOString();
 
-    // Pick rows that are queued and not yet scheduled for a future retry
+    // Pick rows that are ready: queued immediately, OR failed rows whose retry window has elapsed
     const rows = await this.database.sql(
       `SELECT * FROM alerts_queue
-       WHERE status IN ('queued')
+       WHERE status IN ('queued', 'failed')
          AND (next_attempt_at IS NULL OR next_attempt_at <= ?)
        ORDER BY id
        LIMIT 20`,
@@ -191,16 +191,13 @@ export class AlertService implements OnModuleInit {
         } else {
           const delaySec = RETRY_DELAYS_SEC[newAttempt - 1] ?? 900;
           const nextAttempt = new Date(Date.now() + delaySec * 1000).toISOString();
+          // Leave status as 'failed' with next_attempt_at set — flush() will re-pick it
+          // once the delay elapses. Do NOT reset to 'queued' here or the delay is bypassed.
           await this.database.sql(
             `UPDATE alerts_queue
              SET status='failed', attempt_count=?, last_error=?, next_attempt_at=?
              WHERE id=?`,
             newAttempt, errMsg, nextAttempt, row.id,
-          );
-          // Re-queue for retry
-          await this.database.sql(
-            `UPDATE alerts_queue SET status='queued' WHERE id=?`,
-            row.id,
           );
           console.error(`[AlertService] Alert #${row.id} failed (attempt ${newAttempt}/${MAX_ATTEMPTS}), retry at ${nextAttempt}`);
         }
