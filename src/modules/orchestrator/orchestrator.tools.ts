@@ -15,6 +15,7 @@ import { MasterDataService } from '../master-data/master-data.service.js';
 import { MasterDataTools } from '../master-data/master-data.tools.js';
 import { IngestionTools } from '../ingestion/ingestion.tools.js';
 import { AuditLogService } from '../../shared/audit-log.service.js';
+import { ApInvoiceService } from '../ap-invoice/ap-invoice.service.js';
 import {
   ExtractedInvoiceSchema,
   PurchaseOrderSchema,
@@ -63,6 +64,13 @@ function resolveStatus(
   if (data['__po_missing'])       return 'exception';
   const classification = data['classification'] as { docType: string } | undefined;
   if (classification?.docType !== 'invoice') return 'aborted';
+
+  // Check AP result for final status
+  const apResult = data['apResult'] as { status?: string } | undefined;
+  if (apResult?.status === 'auto_approved') return 'Auto-approved';
+  if (apResult?.status === 'pending_approval') return 'Pending-approval';
+  if (apResult?.status === 'duplicate') return 'Duplicate';
+
   return 'Auto-approved';
 }
 
@@ -81,6 +89,7 @@ export class OrchestratorTools {
     private readonly masterDataTools: MasterDataTools,
     private readonly ingestion:       IngestionTools,
     private readonly auditLog:        AuditLogService,
+    private readonly apInvoice:       ApInvoiceService,
   ) {}
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -91,7 +100,7 @@ export class OrchestratorTools {
     name: 'execute_workflow',
     description:
       'Run the full invoice processing pipeline driven by sop_rules.yaml: ' +
-      'classify → extract → validate PO → recommend HS code → match → flag/route exceptions. ' +
+      'classify → extract → validate PO → recommend HS code → match → AP invoice automation. ' +
       'Pass a plain-text invoice document.',
     inputSchema: z.object({
       workflowId: z.literal('invoice_processing'),
@@ -215,6 +224,31 @@ export class OrchestratorTools {
 
         return { validationResult };
       }],
+
+      // ── Step: process_ap_invoice ──────────────────────────────────────────
+      ['process_ap_invoice', async (_step: string, data: Record<string, unknown>, c: ExecutionContext) => {
+        if (data['__po_missing']) {
+          // Can't process AP without a matched PO
+          return { apResult: { status: 'exception', message: 'PO not found — AP invoice skipped' } };
+        }
+
+        const invoice       = data['invoice'] as ExtractedInvoice;
+        const po            = data['po'] as PurchaseOrder;
+        const workflowRunId = data['__workflowRunId'] as string ?? 'unknown';
+
+        const apResult = await this.apInvoice.processApInvoice({
+          invoice,
+          po,
+          workflowId: workflowRunId,
+          idempotencyKey: workflowRunId,
+        });
+
+        c.logger?.info(
+          `[process_ap_invoice] Invoice ${invoice.invoiceNumber}: ${apResult.status}`,
+        );
+
+        return { apResult };
+      }],
     ]);
 
     // ── Run the engine ────────────────────────────────────────────────────────
@@ -258,6 +292,7 @@ export class OrchestratorTools {
         validationResult: result.data['validationResult'],
         hsCodeResult:     result.data['hsCodeResult'],
         classification:   result.data['classification'],
+        apResult:         result.data['apResult'],
       },
     };
   }
@@ -331,7 +366,7 @@ export class OrchestratorTools {
 
   @Tool({
     name: 'flag_exception',
-    description: 'Log a workflow exception to the local exceptions store.',
+    description: 'Log a workflow exception to the exceptions DB table.',
     inputSchema: z.object({
       workflowId: z.string().describe('Workflow run identifier'),
       reason:     z.string().describe('Human-readable reason for the exception'),

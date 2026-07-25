@@ -4,6 +4,7 @@ import { IngestionModule } from './modules/ingestion/ingestion.module.js';
 import { MasterDataModule } from './modules/master-data/master-data.module.js';
 import { OrchestratorModule } from './modules/orchestrator/orchestrator.module.js';
 import { AnalyticsModule } from './modules/analytics/analytics.module.js';
+import { ApInvoiceModule } from './modules/ap-invoice/ap-invoice.module.js';
 
 /**
  * ALE SCM — MCP Server Root Module
@@ -13,6 +14,7 @@ import { AnalyticsModule } from './modules/analytics/analytics.module.js';
  *  - IngestionModule    classify_document, extract_document_data, ingest_document
  *  - MasterDataModule   validate_against_master_data, recommend_hs_code
  *  - OrchestratorModule execute_workflow, match_invoice_to_po, exceptions, workflow status
+ *  - ApInvoiceModule    AP invoice automation (duplicate detect, 3-way match, FX, approval routing)
  *  - ApiKeyModule       x-api-key guard
  */
 @McpApp({
@@ -39,6 +41,7 @@ import { AnalyticsModule } from './modules/analytics/analytics.module.js';
     IngestionModule,
     MasterDataModule,
     OrchestratorModule,
+    ApInvoiceModule,
   ],
   providers: [SystemHealthCheck],
 })
