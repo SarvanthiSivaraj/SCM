@@ -8,7 +8,8 @@ import { ApInvoiceTools } from './ap-invoice.tools.js';
   name: 'ap-invoice',
   imports: [MasterDataModule],
   // ValidationService has no constructor deps — safe to provide here independently
-  providers: [ValidationService, ApInvoiceService, ApInvoiceTools],
+  providers: [ValidationService, ApInvoiceService],
+  controllers: [ApInvoiceTools], // MCP tool endpoints
   exports: [ApInvoiceService],
 })
 export class ApInvoiceModule {}

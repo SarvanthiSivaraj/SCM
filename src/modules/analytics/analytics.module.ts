@@ -13,8 +13,8 @@ import { AnalyticsTools } from './analytics.tools.js';
     MigrationService,  // runs all DDL migrations on startup
     AuditLogService,   // append-only audit writer
     AnalyticsService,  // pure SQL analytics queries
-    AnalyticsTools,    // MCP tool endpoints
   ],
+  controllers: [AnalyticsTools], // MCP tool endpoints
   exports: [
     DatabaseService,   // shared across modules that import AnalyticsModule
     MigrationService,

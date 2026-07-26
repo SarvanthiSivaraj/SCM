@@ -34,49 +34,124 @@ interface OpenRouterResponse {
   }>;
 }
 
+const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
+const ANTHROPIC_VERSION = '2023-06-01';
+
 // Keep the old name so all existing imports (`ClaudeClient`) compile without change.
 @Injectable()
 export class ClaudeClient {
-  private readonly apiKey = process.env.OPENROUTER_API_KEY ?? '';
+  private readonly openRouterKey = process.env.OPENROUTER_API_KEY ?? '';
+  private readonly anthropicKey = process.env.ANTHROPIC_API_KEY ?? '';
 
   async complete(
     systemPrompt: string,
     userPrompt: string,
-    _model: string = DEFAULT_MODEL, // param kept for call-site compatibility
+    model: string = DEFAULT_MODEL, // param kept for call-site compatibility
     temperature = 0.1,
   ): Promise<string> {
-    if (!this.apiKey) {
-      throw new Error(
-        'OPENROUTER_API_KEY is not set. ' +
-        'Get a free key at https://openrouter.ai/keys and add it to your .env / NitroCloud Vault.',
-      );
+    // 1. Try OpenRouter if key is present
+    if (this.openRouterKey) {
+      const res = await fetch(OPENROUTER_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.openRouterKey}`,
+          'HTTP-Referer': 'https://nitrocloud.ai',   // required by OpenRouter
+          'X-Title': 'ALE-SCM MCP Server',           // optional — shows in OpenRouter dashboard
+        },
+        body: JSON.stringify({
+          model,
+          temperature,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user',   content: userPrompt   },
+          ],
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`OpenRouter API error ${res.status}: ${err}`);
+      }
+
+      const data = (await res.json()) as OpenRouterResponse;
+      return data.choices[0]?.message?.content ?? '';
     }
 
-    const res = await fetch(OPENROUTER_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.apiKey}`,
-        'HTTP-Referer': 'https://nitrocloud.ai',   // required by OpenRouter
-        'X-Title': 'ALE-SCM MCP Server',           // optional — shows in OpenRouter dashboard
-      },
-      body: JSON.stringify({
-        model: DEFAULT_MODEL,
-        temperature,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user',   content: userPrompt   },
-        ],
-      }),
-    });
+    // 2. Try Gemini API direct if key is a Gemini API key (starts with 'AQ.' or 'AIzaSy')
+    const isGeminiKey = this.anthropicKey.startsWith('AIzaSy') || this.anthropicKey.startsWith('AQ.');
+    if (this.anthropicKey && isGeminiKey) {
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.anthropicKey}`;
+      const res = await fetch(geminiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: 'user',
+              parts: [{ text: userPrompt }]
+            }
+          ],
+          systemInstruction: {
+            parts: [{ text: systemPrompt }]
+          },
+          generationConfig: {
+            temperature,
+            responseMimeType: 'application/json'
+          }
+        }),
+      });
 
-    if (!res.ok) {
-      const err = await res.text();
-      throw new Error(`OpenRouter API error ${res.status}: ${err}`);
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`Gemini API error ${res.status}: ${err}`);
+      }
+
+      const data = (await res.json()) as {
+        candidates: Array<{
+          content: {
+            parts: Array<{ text: string }>
+          }
+        }>
+      };
+      return data.candidates[0]?.content?.parts[0]?.text ?? '';
     }
 
-    const data = (await res.json()) as OpenRouterResponse;
-    return data.choices[0]?.message?.content ?? '';
+    // 3. Try Anthropic direct if key is present
+    if (this.anthropicKey) {
+      // Map to correct model name format if needed
+      const anthropicModel = model.includes('/') ? 'claude-haiku-20240307' : model;
+      const res = await fetch(ANTHROPIC_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': this.anthropicKey,
+          'anthropic-version': ANTHROPIC_VERSION,
+        },
+        body: JSON.stringify({
+          model: anthropicModel,
+          max_tokens: 4096,
+          temperature,
+          system: systemPrompt,
+          messages: [{ role: 'user', content: userPrompt }],
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`Claude API error ${res.status}: ${err}`);
+      }
+
+      const data = (await res.json()) as { content: Array<{ type: string; text: string }> };
+      return data.content[0]?.text ?? '';
+    }
+
+    throw new Error(
+      'Neither OPENROUTER_API_KEY nor ANTHROPIC_API_KEY (or GEMINI_API_KEY) is set. ' +
+      'Please check your .env file or configuration.'
+    );
   }
 
   /**
@@ -87,10 +162,10 @@ export class ClaudeClient {
     schema: z.ZodType<T>,
     systemPrompt: string,
     userPrompt: string,
-    _model: string = DEFAULT_MODEL,
+    model: string = DEFAULT_MODEL,
   ): Promise<T> {
     const attempt = async (prompt: string): Promise<T> => {
-      const raw = await this.complete(systemPrompt, prompt);
+      const raw = await this.complete(systemPrompt, prompt, model);
       // Strip markdown fences if the model adds them anyway
       const cleaned = raw.replace(/```(?:json)?\n?/g, '').replace(/```/g, '').trim();
       return schema.parse(JSON.parse(cleaned));
