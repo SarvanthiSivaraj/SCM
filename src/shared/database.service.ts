@@ -9,23 +9,32 @@ import { Database } from '@sqlitecloud/drivers';
  *  - A single connection (SQLite Cloud handles the pool internally)
  *  - One place to enable WAL mode and other pragmas
  *  - Clean shutdown on module destroy
+ *
+ * IMPORTANT — init order:
+ *   The `Database` object is created eagerly in the constructor so it is
+ *   guaranteed to exist when any other service's `onModuleInit` fires,
+ *   regardless of the provider initialization order NitroStack chooses.
+ *   The driver connects lazily on the first actual query, so the constructor
+ *   is still fast. WAL-mode pragmas are applied in `onModuleInit`.
  */
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy {
-  private _db!: Database;
+  private _db: Database;
 
-  async onModuleInit(): Promise<void> {
+  constructor() {
     const url = process.env['SQLITECLOUD_URL'];
     if (!url) {
       throw new Error(
         '[DatabaseService] SQLITECLOUD_URL is not set. ' +
-        'Add it to your .env file. ' +
+        'Add it to your .env file or NitroCloud Vault. ' +
         'Format: sqlitecloud://<host>.sqlite.cloud:8860/<db>.sqlite?apikey=<key>',
       );
     }
-
+    // Eagerly create the connection object — the driver connects lazily on first query.
     this._db = new Database(url);
+  }
 
+  async onModuleInit(): Promise<void> {
     // Production SQLite pragmas — must run before any other queries
     await this._db.sql('PRAGMA journal_mode = WAL');
     await this._db.sql('PRAGMA foreign_keys = ON');
@@ -40,11 +49,10 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   }
 
   /**
-   * Expose the raw connection for services that need direct sql() access.
-   * Throws if called before onModuleInit completes.
+   * Expose the raw Database connection for services that need it directly.
+   * Always safe to call — _db is set in the constructor.
    */
   get db(): Database {
-    if (!this._db) throw new Error('[DatabaseService] DB not initialized yet');
     return this._db;
   }
 
