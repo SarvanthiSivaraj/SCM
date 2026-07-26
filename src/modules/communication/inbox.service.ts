@@ -41,7 +41,7 @@ export interface EscalationResult {
 
 // ─── Service ──────────────────────────────────────────────────────────────────
 
-@Injectable()
+@Injectable({ deps: [DatabaseService, AlertService] })
 export class InboxService {
   /** Escalation threshold in hours — configurable via SLA_ESCALATION_HOURS */
   private readonly slaHours: number;

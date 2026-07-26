@@ -10,7 +10,7 @@ import { DatabaseService } from './database.service.js';
  *  - Always call log() at the END of a tool call so duration_ms is accurate
  *  - Input/output are stored as SHA-256 hashes — never raw data in the log
  */
-@Injectable()
+@Injectable({ deps: [DatabaseService] })
 export class AuditLogService {
   constructor(private readonly database: DatabaseService) {}
 

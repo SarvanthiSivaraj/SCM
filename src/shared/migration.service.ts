@@ -263,7 +263,7 @@ const MIGRATIONS: Migration[] = [
 
 // ─── Service ─────────────────────────────────────────────────────────────────
 
-@Injectable()
+@Injectable({ deps: [DatabaseService] })
 export class MigrationService implements OnModuleInit {
   constructor(private readonly database: DatabaseService) {}
 

@@ -84,7 +84,7 @@ const TEMPLATES: Record<string, (payload: Record<string, unknown>) => AlertTempl
 
 // ─── Service ──────────────────────────────────────────────────────────────────
 
-@Injectable()
+@Injectable({ deps: [DatabaseService] })
 export class AlertService implements OnModuleInit {
   private transporter: Transporter | null = null;
   private smtpFrom = 'alerts@ale-scm.com';

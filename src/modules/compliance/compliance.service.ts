@@ -9,7 +9,7 @@ export interface ScreeningResult {
   }>;
 }
 
-@Injectable()
+@Injectable({ deps: [ErpAdapter] })
 export class ComplianceService {
   constructor(private readonly erpAdapter: ErpAdapter) {}
 

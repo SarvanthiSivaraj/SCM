@@ -18,7 +18,7 @@ export interface ExceptionRecord {
 
 // ─── Service ─────────────────────────────────────────────────────────────────
 
-@Injectable()
+@Injectable({ deps: [DatabaseService] })
 export class ExceptionService {
   constructor(private readonly database: DatabaseService) {}
 

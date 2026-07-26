@@ -48,7 +48,7 @@ function rowToPO(row: Record<string, unknown>): PurchaseOrder {
   };
 }
 
-@Injectable()
+@Injectable({ deps: [DatabaseService] })
 export class SqliteErpAdapter implements ErpAdapter {
   constructor(private readonly database: DatabaseService) {}
 

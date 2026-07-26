@@ -39,7 +39,7 @@ export interface EngineResult {
  *   flag_and_route  → write exception + console route, stop, mark failed
  *   continue        → record error, keep going
  */
-@Injectable()
+@Injectable({ deps: [SopLoaderService, WorkflowContextStore, ExceptionService] })
 export class WorkflowEngine {
   constructor(
     private readonly sop:        SopLoaderService,

@@ -43,7 +43,7 @@ export interface VendorScorecard {
 
 // ─── Service ─────────────────────────────────────────────────────────────────
 
-@Injectable()
+@Injectable({ deps: [DatabaseService] })
 export class AnalyticsService {
   constructor(private readonly database: DatabaseService) {}
 

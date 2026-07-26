@@ -8,7 +8,7 @@ import type { ExtractedInvoice } from '../../shared/schemas.js';
  * Called by OrchestratorTools at the end of a successful execute_workflow
  * so the invoices table is populated for analytics queries.
  */
-@Injectable()
+@Injectable({ deps: [DatabaseService] })
 export class InvoiceRepository {
   constructor(private readonly database: DatabaseService) {}
 

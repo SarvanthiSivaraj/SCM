@@ -5,7 +5,7 @@ import { ErpAdapter } from './erp.adapter.js';
 
 // ─── Service ─────────────────────────────────────────────────────────────────
 
-@Injectable()
+@Injectable({ deps: [DatabaseService, ErpAdapter] })
 export class MasterDataService implements OnModuleInit {
   constructor(
     private readonly database: DatabaseService,

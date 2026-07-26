@@ -15,7 +15,7 @@ import { AlertService } from './alert.service.js';
  *  - The flush is a single pass per tick; if the queue is larger than the batch limit (20),
  *    the next tick picks up the remainder — avoids holding a long write lock.
  */
-@Injectable()
+@Injectable({ deps: [AlertService] })
 export class AlertWorker implements OnApplicationBootstrap, OnModuleDestroy {
   private timer: ReturnType<typeof setInterval> | null = null;
   private readonly intervalMs: number;

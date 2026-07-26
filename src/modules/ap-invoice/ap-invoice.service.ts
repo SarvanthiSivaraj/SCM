@@ -20,7 +20,7 @@ function sha256(obj: unknown): string {
 
 // ─── Service ──────────────────────────────────────────────────────────────────
 
-@Injectable()
+@Injectable({ deps: [MasterDataService, ValidationService] })
 export class ApInvoiceService {
   constructor(
     private readonly masterData: MasterDataService,
