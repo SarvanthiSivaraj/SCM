@@ -1,4 +1,4 @@
-import { Injectable } from '@nitrostack/core';
+import { Injectable, OnModuleInit } from '@nitrostack/core';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -49,8 +49,10 @@ function rowToPO(row: Record<string, unknown>): PurchaseOrder {
 }
 
 @Injectable()
-export class SqliteErpAdapter implements ErpAdapter {
-  constructor(private readonly database: DatabaseService) {}
+export class SqliteErpAdapter extends ErpAdapter implements OnModuleInit {
+  constructor(private readonly database: DatabaseService) {
+    super();
+  }
 
   async onModuleInit(): Promise<void> {
     const rows = (await this.database.sql(
