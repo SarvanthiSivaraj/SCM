@@ -20,6 +20,13 @@ that has a corresponding MCP tool, you MUST invoke that tool via a real tool cal
 | "screen this vendor" | `compliance_screen_vendor` | Guess compliance status |
 | "get alert status" | `get_alert_status` | Assume alert was delivered |
 
+### 1.1 Text-Only Invoices & ERP Queries
+If the user provides invoice details directly as text (e.g. "Process invoice INV-004 from Tech Supplies Ltd for PO-002... 50 units of BAT-002 at $65.00 each") without uploading a file:
+- **Do not refuse** the request or demand a file upload.
+- **Fetch the PO from ERP/Master Data**: Immediately invoke `validate_against_master_data` using the SKU and PO number provided to retrieve the master record.
+- **Run the full workflow**: Call `execute_workflow` by constructing a structured text representation of the invoice details and passing it as the `file_content` (using a filename like `invoice_INV-004.txt`).
+- **Provide matching results**: Compare the user's provided details against the retrieved ERP master record (e.g., highlighting any unit price discrepancies like $65.00 vs $49.99).
+
 ### execute_workflow — expected outcomes
 The pipeline has five valid terminal states. All of them are handled by the widget —
 do NOT produce alternative UI for any of them:

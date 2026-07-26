@@ -27,8 +27,16 @@ function getSeedPOs(): PurchaseOrder[] {
     try {
       const content = readFileSync(MASTER_JSON_PATH, 'utf-8');
       const parsed = JSON.parse(content);
-      if (Array.isArray(parsed.purchaseOrders) && parsed.purchaseOrders.length > 0) {
-        return parsed.purchaseOrders as PurchaseOrder[];
+      const rawOrders = parsed.purchase_orders || parsed.purchaseOrders;
+      if (Array.isArray(rawOrders) && rawOrders.length > 0) {
+        return rawOrders.map((o: any) => ({
+          poNumber: o.po_number || o.poNumber,
+          vendor: o.vendor,
+          sku: o.sku,
+          orderedQty: o.ordered_qty !== undefined ? o.ordered_qty : o.orderedQty,
+          unitPrice: o.unit_price !== undefined ? o.unit_price : o.unitPrice,
+          hsCode: o.hs_code || o.hsCode,
+        }));
       }
     } catch {
       console.warn('[SqliteErpAdapter] Could not parse master-data.json, using fallback seed POs.');
