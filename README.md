@@ -62,56 +62,72 @@ The MCP backend is composed of highly decoupled domain modules, each responsible
 ## System Architecture Diagram
 
 ```mermaid
-flowchart TB
-    subgraph ClientLayer ["Client Application"]
-        MCPClient["MCP Client<br/>(NitroStudio / Claude Desktop / Cursor)"]
+flowchart TD
+    %% Define Styles
+    classDef client fill:#3b82f6,stroke:#2563eb,stroke-width:2px,color:#fff,rx:8px,ry:8px;
+    classDef server fill:#1e293b,stroke:#475569,stroke-width:2px,color:#f8fafc;
+    classDef host fill:#0f172a,stroke:#334155,stroke-width:2px,color:#38bdf8,rx:8px,ry:8px;
+    classDef module fill:#334155,stroke:#475569,stroke-width:1px,color:#f8fafc,rx:4px,ry:4px;
+    classDef db fill:#059669,stroke:#047857,stroke-width:2px,color:#fff,rx:8px,ry:8px;
+    classDef external fill:#d97706,stroke:#b45309,stroke-width:2px,color:#fff,rx:8px,ry:8px;
+    classDef plain fill:none,stroke:none,color:#94a3b8;
+
+    %% Client Layer
+    subgraph ClientLayer [" "]
+        MCPClient["MCP Client<br/>(NitroStudio / Cursor / Claude)"]:::client
     end
 
+    %% MCP Server Boundary
     subgraph MCPServer ["Model Context Protocol (MCP) Server"]
         direction TB
         
-        MCPHost["MCP Protocol Host<br/>(STDIO / HTTP SSE)"]
+        MCPHost{{"MCP Protocol Host<br/>(STDIO / HTTP SSE)"}}:::host
         
-        subgraph Top[" "]
+        %% Core Domain Modules
+        subgraph CoreModules ["Domain Modules"]
             direction LR
-            Email["inbound email"] --> Comm["Communication Module"]
-            Comm --> Alerts["alerts / escalations (queued)"]
+            Ingest["Ingestion<br/>(AI OCR)"]:::module
+            Master["Master Data<br/>(ERP Verification)"]:::module
+            Orch["Orchestrator<br/>(Workflow & Matching)"]:::module
+            AP["AP Invoice<br/>(Automation)"]:::module
+            Customs["Compliance<br/>(HS Codes)"]:::module
+            Comm["Communication<br/>(Alerts)"]:::module
+            Analytics["Analytics<br/>(Reporting)"]:::module
         end
-
-        Comm --> Ingest
-
-        subgraph Main[" "]
-            direction LR
-            Docs["docs/email attachments"] --> Ingest["Ingestion Module"]
-            Ingest --> Orch["Orchestrator"]
-            Orch --> Valid["Validation Module"]
-        end
-
-        Orch --> AP["AP Invoice Automation"]
-        Valid --> Master["Master Data<br/>(SQLite, WAL mode)"]
-
-        AP --> Customs["Customs & Compliance"]
-        Master --> Customs
-
-        Customs --> Analytics["Analytics & Reporting<br/>(reads summary tables)"]
-        Analytics --> Audit["audit_log (all modules write here)"]
     end
 
-    MCPClient <-->|MCP Protocol Requests / Tools| MCPHost
-    MCPHost <--> Ingest
-    MCPHost <--> Orch
-    MCPHost <--> Master
-    MCPHost <--> AP
+    %% External Systems Boundary
+    subgraph ExternalSystems ["External Infrastructure"]
+        direction LR
+        SQLite[("SQLite Cloud<br/>(WAL Mode)")]:::db
+        OpenRouter{{"OpenRouter<br/>(Free LLM APIs)"}}:::external
+        SMTP{{"SMTP Server<br/>(Email Delivery)"}}:::external
+    end
 
-    classDef module fill:#1e1e1e,stroke:#dcdcdc,color:#ffffff,stroke-width:1px;
-    classDef plain fill:none,stroke:none,color:#ffffff;
-    classDef server fill:#2d2d2d,stroke:#555,stroke-width:2px,color:#fff;
-    classDef client fill:#0055ff,stroke:#0033cc,stroke-width:2px,color:#fff;
+    %% Relationships - Client to Host
+    MCPClient <==>|Tool Calls & UI Widgets| MCPHost
 
-    class Comm,Ingest,Orch,Valid,AP,Customs,Analytics,Master module;
-    class Email,Docs,Alerts,Audit plain;
+    %% Relationships - Host to Modules
+    MCPHost --> Ingest
+    MCPHost --> Orch
+    MCPHost --> Master
+    MCPHost --> AP
+
+    %% Relationships - Internal Module Flow
+    Ingest -.->|Parsed Data| Orch
+    Orch -.->|3-Way Match| Master
+    Orch -.->|Process Approval| AP
+    AP -.-> Customs
+    Comm -.->|Audit Logs| Analytics
+    Orch -.->|Escalations| Comm
+
+    %% Relationships - Modules to External
+    Ingest ==>|API Inference| OpenRouter
+    Master ==>|Read/Write Data| SQLite
+    Analytics ==>|Read/Write Logs| SQLite
+    Comm ==>|Dispatch| SMTP
+
     class MCPServer server;
-    class MCPClient client;
 ```
 
 ---
