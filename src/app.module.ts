@@ -1,4 +1,4 @@
-import { McpApp, Module, ConfigModule, ApiKeyModule } from '@nitrostack/core';
+import { McpApp, Module, ConfigModule } from '@nitrostack/core';
 import { SystemHealthCheck } from './health/system.health.js';
 import { IngestionModule } from './modules/ingestion/ingestion.module.js';
 import { MasterDataModule } from './modules/master-data/master-data.module.js';
@@ -17,7 +17,6 @@ import { CommunicationModule } from './modules/communication/communication.modul
  *  - MasterDataModule   validate_against_master_data, recommend_hs_code
  *  - OrchestratorModule execute_workflow, match_invoice_to_po, exceptions, workflow status
  *  - ApInvoiceModule    AP invoice automation (duplicate detect, 3-way match, FX, approval routing)
- *  - ApiKeyModule       x-api-key guard
  *  - CommunicationModule  send_alert, ingest_email_inbox, SLA escalation, daily digest, route_task upgrade
  */
 @McpApp({
@@ -35,11 +34,6 @@ import { CommunicationModule } from './modules/communication/communication.modul
   description: 'ALE SCM MCP root module',
   imports: [
     ConfigModule.forRoot(),
-    ApiKeyModule.forRoot({
-      keysEnvPrefix: 'ALE_API_KEY',
-      headerName: 'x-api-key',
-      hashed: false,
-    }) as any,
     AnalyticsModule,      // boots first: DB connection + all migrations
     IngestionModule,
     MasterDataModule,
