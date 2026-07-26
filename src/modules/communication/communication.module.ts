@@ -25,8 +25,8 @@ import { CommunicationTools }  from './communication.tools.js';
     AlertService,
     AlertWorker,
     InboxService,
-    CommunicationTools,
   ],
+  controllers: [CommunicationTools], // MCP tool endpoints
   exports: [
     AlertService,   // consumed by OrchestratorModule (route_task upgrade)
     InboxService,

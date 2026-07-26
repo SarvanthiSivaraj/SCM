@@ -10,9 +10,9 @@ import { SqliteErpAdapter } from './sqlite-erp.adapter.js';
   imports: [AnalyticsModule],  // provides shared DatabaseService + MigrationService
   providers: [
     { provide: ErpAdapter, useClass: SqliteErpAdapter },
-    MasterDataService, 
-    MasterDataTools,
+    MasterDataService,
   ],
+  controllers: [MasterDataTools], // MCP tool endpoints
   exports: [MasterDataService, MasterDataTools, ErpAdapter],
 })
 export class MasterDataModule {}
