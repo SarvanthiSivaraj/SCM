@@ -1,13 +1,14 @@
-# NitroStack Starter Template
+# ALE SCM MCP Server
 
-Minimal template for learning NitroStack fundamentals with a calculator-focused
-MCP server and basic widgets.
+Supply-chain management MCP server focused on logistics workflows, invoice
+processing, master data validation, compliance, and exception handling.
 
-## What This Template Includes
+## What This Project Includes
 
-- `calculator` module with tools, resources, and prompts
+- Logistics-focused MCP modules for ingestion, master data, orchestration,
+  analytics, AP invoice processing, compliance, and communication
 - TypeScript + Zod validation setup
-- Widget-ready project structure
+- Widget-ready project structure for invoice workflow output
 - Production-friendly npm scripts
 
 ## Quick Start

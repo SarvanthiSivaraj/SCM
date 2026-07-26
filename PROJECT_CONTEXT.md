@@ -86,14 +86,8 @@ SCM/
 │   │   │   ├── orchestrator.tools.ts
 │   │   │   ├── validation.service.ts
 │   │   │   └── exception.service.ts
-│   │   └── calculator/         # Reference Calculator & Unit Converter module
-│   │       ├── calculator.module.ts
-│   │       ├── calculator.tools.ts
-│   │       ├── calculator.resources.ts
-│   │       └── calculator.prompts.ts
 │   └── widgets/                # Next.js frontend widgets for tool outputs
-│       ├── invoice-result/     # Invoice processing visualizer UI
-│       └── app/calculator-result/
+│       └── invoice-result/     # Invoice processing visualizer UI
 ├── sop_rules.yaml              # Standard Operating Procedure workflow configuration
 ├── package.json
 └── tsconfig.json
@@ -195,14 +189,7 @@ Coordinates end-to-end business workflows, rule validation, exception handling, 
 
 ---
 
-### 4. Calculator & Utility Module (`src/modules/calculator`)
-
-Reference module providing basic utility tools, resources, and prompt templates.
-
-- **`calculate` (Tool)**: Standard arithmetic operations (`add`, `subtract`, `multiply`, `divide`). Linked to `@Widget('calculator-result')`.
-- **`convert_temperature` (Tool)**: Temperature unit converter (Celsius ↔ Fahrenheit) with optional base64 file attachment saving.
-- **`calculator://operations` (Resource)**: Returns available calculator operations in JSON format.
-- **`calculator_help` (Prompt)**: Interactive prompt template providing help and usage guidance for LLM assistants.
+### 4. System Health Check (`src/health/system.health.ts`)
 
 ---
 
