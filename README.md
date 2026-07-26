@@ -1,9 +1,9 @@
 # ALE Supply Chain Management (SCM) - AI Agentic Backend
 
 ## Overview
-**ALE SCM** is a next-generation enterprise Model Context Protocol (MCP) server built with **NitroStack**. It powers an autonomous AI backend capable of document ingestion (OCR), master data validation, supply chain workflow orchestration, intelligent exception handling, and interactive Next.js widgets for rich client visualization. 
+**ALE SCM** is a next-generation enterprise **Model Context Protocol (MCP) server** built with **NitroStack**. The primary goal of this project is to expose autonomous AI capabilities directly to conversational AI agents (like Claude Desktop, Cursor, or NitroStudio) via the standard MCP specification.
 
-By exposing native supply-chain capabilities directly to AI agents (like Claude Desktop, Cursor, or NitroStudio), it transforms traditional, rigid ERP systems into a dynamic, agentic workflow engine. 
+By wrapping complex supply chain logic inside an MCP server, it transforms traditional, rigid ERP systems into a dynamic, agentic workflow engine. 
 
 ---
 
@@ -30,7 +30,7 @@ The system does not simply operate on a pass/fail binary. When the AI detects a 
 
 ## Core Feature Modules
 
-The backend is composed of highly decoupled domain modules, each responsible for a specific stage of the supply chain lifecycle.
+The MCP backend is composed of highly decoupled domain modules, each responsible for a specific stage of the supply chain lifecycle and exposing specific toolsets to the AI client.
 
 ### Ingestion Module (AI OCR)
 - **Automated Parsing**: Intelligently parses PDFs, images, and raw text into structured JSON.
@@ -63,35 +63,55 @@ The backend is composed of highly decoupled domain modules, each responsible for
 
 ```mermaid
 flowchart TB
-    subgraph Top[" "]
-        direction LR
-        Email["inbound email"] --> Comm["Communication Module"]
-        Comm --> Alerts["alerts / escalations (queued)"]
+    subgraph ClientLayer ["Client Application"]
+        MCPClient["MCP Client<br/>(NitroStudio / Claude Desktop / Cursor)"]
     end
 
-    Comm --> Ingest
+    subgraph MCPServer ["Model Context Protocol (MCP) Server"]
+        direction TB
+        
+        MCPHost["MCP Protocol Host<br/>(STDIO / HTTP SSE)"]
+        
+        subgraph Top[" "]
+            direction LR
+            Email["inbound email"] --> Comm["Communication Module"]
+            Comm --> Alerts["alerts / escalations (queued)"]
+        end
 
-    subgraph Main[" "]
-        direction LR
-        Docs["docs/email attachments"] --> Ingest["Ingestion Module"]
-        Ingest --> Orch["Orchestrator"]
-        Orch --> Valid["Validation Module"]
+        Comm --> Ingest
+
+        subgraph Main[" "]
+            direction LR
+            Docs["docs/email attachments"] --> Ingest["Ingestion Module"]
+            Ingest --> Orch["Orchestrator"]
+            Orch --> Valid["Validation Module"]
+        end
+
+        Orch --> AP["AP Invoice Automation"]
+        Valid --> Master["Master Data<br/>(SQLite, WAL mode)"]
+
+        AP --> Customs["Customs & Compliance"]
+        Master --> Customs
+
+        Customs --> Analytics["Analytics & Reporting<br/>(reads summary tables)"]
+        Analytics --> Audit["audit_log (all modules write here)"]
     end
 
-    Orch --> AP["AP Invoice Automation"]
-    Valid --> Master["Master Data<br/>(SQLite, WAL mode)"]
-
-    AP --> Customs["Customs & Compliance"]
-    Master --> Customs
-
-    Customs --> Analytics["Analytics & Reporting<br/>(reads summary tables)"]
-    Analytics --> Audit["audit_log (all modules write here)"]
+    MCPClient <-->|MCP Protocol Requests / Tools| MCPHost
+    MCPHost <--> Ingest
+    MCPHost <--> Orch
+    MCPHost <--> Master
+    MCPHost <--> AP
 
     classDef module fill:#1e1e1e,stroke:#dcdcdc,color:#ffffff,stroke-width:1px;
     classDef plain fill:none,stroke:none,color:#ffffff;
+    classDef server fill:#2d2d2d,stroke:#555,stroke-width:2px,color:#fff;
+    classDef client fill:#0055ff,stroke:#0033cc,stroke-width:2px,color:#fff;
 
     class Comm,Ingest,Orch,Valid,AP,Customs,Analytics,Master module;
     class Email,Docs,Alerts,Audit plain;
+    class MCPServer server;
+    class MCPClient client;
 ```
 
 ---
