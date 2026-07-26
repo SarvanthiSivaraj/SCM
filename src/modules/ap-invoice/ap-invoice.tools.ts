@@ -7,7 +7,7 @@ import {
   RateLimit,
   z,
 } from '@nitrostack/core';
-import { ApiKeyGuard } from '../../shared/api-key.guard.js';
+
 import { ApInvoiceService } from './ap-invoice.service.js';
 import {
   ExtractedInvoiceSchema,
@@ -69,7 +69,7 @@ export class ApInvoiceTools {
     }),
     outputSchema: ApInvoiceResultSchema,
   })
-  @UseGuards(ApiKeyGuard)
+
   @RateLimit({ requests: 30, window: '1m' })
   async processApInvoice(
     input: {
@@ -117,7 +117,7 @@ export class ApInvoiceTools {
     }),
     outputSchema: ThreeWayMatchResultSchema,
   })
-  @UseGuards(ApiKeyGuard)
+
   @RateLimit({ requests: 60, window: '1m' })
   async matchInvoiceToPO(
     input: {
@@ -149,7 +149,7 @@ export class ApInvoiceTools {
       message: z.string(),
     }),
   })
-  @UseGuards(ApiKeyGuard)
+
   @RateLimit({ requests: 60, window: '1m' })
   async logGoodsReceipt(
     input: z.infer<typeof GoodsReceiptSchema>,
@@ -189,7 +189,7 @@ export class ApInvoiceTools {
       invoice: z.any().optional(),
     }),
   })
-  @UseGuards(ApiKeyGuard)
+
   @RateLimit({ requests: 120, window: '1m' })
   async getInvoiceStatus(
     input: { invoiceNumber: string },
@@ -224,7 +224,7 @@ export class ApInvoiceTools {
       count: z.number(),
     }),
   })
-  @UseGuards(ApiKeyGuard)
+
   @RateLimit({ requests: 60, window: '1m' })
   async listInvoices(
     input: { status?: string; vendor?: string; limit?: number; offset?: number },
@@ -254,7 +254,7 @@ export class ApInvoiceTools {
       ),
     }),
   })
-  @UseGuards(ApiKeyGuard)
+
   @RateLimit({ requests: 60, window: '1m' })
   async getApprovalThresholds(_input: Record<string, never>, ctx: ExecutionContext) {
     ctx.logger?.info('[ap_invoice_get_approval_thresholds] Reading approval thresholds');

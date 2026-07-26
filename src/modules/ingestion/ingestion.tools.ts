@@ -15,7 +15,7 @@ import {
   type ExtractedInvoice,
   type InvoiceLineItem,
 } from '../../shared/schemas.js';
-import { ApiKeyGuard } from '../../shared/api-key.guard.js';
+
 import { IngestionExceptionFilter } from './ingestion.exception.filter.js';
 
 // ─── System Prompts ───────────────────────────────────────────────────────────
@@ -72,7 +72,7 @@ export class IngestionTools {
       confidence: z.number().min(0).max(1),
     }),
   })
-  @UseGuards(ApiKeyGuard)
+
   @UseFilters(IngestionExceptionFilter)
   @RateLimit({ requests: 60, window: '1m' })
   async classifyDocument(
@@ -115,7 +115,7 @@ export class IngestionTools {
     }),
     outputSchema: z.array(InvoiceLineItemSchema),
   })
-  @UseGuards(ApiKeyGuard)
+
   @UseFilters(IngestionExceptionFilter)
   @RateLimit({ requests: 60, window: '1m' })
   async extractInvoiceLineItems(
@@ -158,7 +158,7 @@ export class IngestionTools {
     }),
     outputSchema: ExtractedInvoiceSchema,
   })
-  @UseGuards(ApiKeyGuard)
+
   @UseFilters(IngestionExceptionFilter)
   @RateLimit({ requests: 30, window: '1m' })
   async extractDocumentData(
@@ -225,7 +225,7 @@ export class IngestionTools {
       message: z.string().optional(),
     }),
   })
-  @UseGuards(ApiKeyGuard)
+
   @UseFilters(IngestionExceptionFilter)
   @RateLimit({ requests: 20, window: '1m' })
   async ingestDocument(
