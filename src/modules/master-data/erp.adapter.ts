@@ -1,3 +1,4 @@
+import { Injectable } from '@nitrostack/core';
 import type { PurchaseOrder, GoodsReceipt } from '../../shared/schemas.js';
 
 /**
@@ -6,6 +7,7 @@ import type { PurchaseOrder, GoodsReceipt } from '../../shared/schemas.js';
  * Defines the contract for fetching master data from an external system.
  * This can be implemented by specific adapters (e.g., SAP, NetSuite, or SQLite for dev).
  */
+@Injectable()
 export class ErpAdapter {
   async onModuleInit(): Promise<void> { throw new Error('Not implemented'); }
   async findPO(poNumber: string): Promise<PurchaseOrder | null> { throw new Error('Not implemented'); }
