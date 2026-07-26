@@ -23,8 +23,8 @@ import { InvoiceRepository } from './invoice.repository.js';
     ValidationService,      // invoice ↔ PO field comparison
     ExceptionService,       // SQLite-backed exception log
     InvoiceRepository,      // persists invoices + line items to SQLite
-    OrchestratorTools,
   ],
+  controllers: [OrchestratorTools], // MCP tool endpoints
   exports: [ValidationService, InvoiceRepository, ExceptionService],
 })
 export class OrchestratorModule {}
